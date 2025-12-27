@@ -1,98 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Leemaah's Store | Albayas, Kitchen Utensils & Home Appliances</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leemaah's Store | Albayas, Kitchen Utensils & Home Appliances</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+}
 
-    header {
-      padding: 20px;
-      text-align: center;
-      background: #141414;
-    }
+header {
+  background: #141414;
+  padding: 20px;
+  text-align: center;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+section {
+  padding: 20px;
+}
 
-    header p {
-      font-size: 14px;
-      color: #ccc;
-      margin-top: 8px;
-    }
+h2 {
+  border-left: 4px solid #25d366;
+  padding-left: 10px;
+}
 
-    section {
-      padding: 20px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
 
-    h2 {
-      margin-bottom: 12px;
-      border-left: 4px solid #25d366;
-      padding-left: 10px;
-    }
+.card {
+  background: #1b1b1b;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-    }
+.card img,
+.card video {
+  width: 100%;
+  display: block;
+}
 
-    .card {
-      position: relative;
-      background: #1b1b1b;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+.whatsapp-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #25d366;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
 
-    .card img,
-    .card video {
-      width: 100%;
-      display: block;
-    }
-
-    .whatsapp-btn {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #25d366;
-      color: #000;
-      text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    footer {
-      padding: 20px;
-      text-align: center;
-      font-size: 13px;
-      color: #aaa;
-    }
-
-    footer a {
-      color: #25d366;
-      text-decoration: none;
-    }
-  </style>
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #aaa;
+}
+footer a {
+  color: #25d366;
+  text-decoration: none;
+}
+</style>
 </head>
+
 <body>
 
 <header>
   <h1>Leemaah's Store</h1>
   <p>
-    We sell albayas, kitchen utensils and home appliances that are very nice in quality and affordable in price.
-    We are available 24/7 to receive your orders and make quick delivery 🥰
+    We sell albayas, kitchen utensils and home appliances that are very nice in quality and affordable.
+    We are available 24/7 for fast delivery 🥰
   </p>
 </header>
 
@@ -114,47 +102,47 @@
 <footer>
   Contact:
   <a href="mailto:halimatiamuju@gmail.com">halimatiamuju@gmail.com</a><br>
-  WhatsApp Orders:
-  <a href="https://wa.me/message/BFCJZDIJ5MTEE1" target="_blank">
-    Click here
-  </a>
+  WhatsApp:
+  <a href="https://wa.me/message/BFCJZDIJ5MTEE1" target="_blank">Order Here</a>
 </footer>
 
 <script>
-  const whatsapp = "https://wa.me/message/BFCJZDIJ5MTEE1";
+const whatsapp = "https://wa.me/message/BFCJZDIJ5MTEE1";
 
-  function item(media) {
-    return `
-      <div class="card">
-        ${media}
-        <a class="whatsapp-btn" href="${whatsapp}" target="_blank">
-          Order on WhatsApp
-        </a>
-      </div>
-    `;
-  }
-
-  const albaya = document.getElementById("albaya");
-  const kitchen = document.getElementById("kitchen");
-  const appliance = document.getElementById("appliance");
-
-  /* ALBAYA */
-  albaya.innerHTML = `
-    ${Array.from({length:41}, (_,i) => item(`<img src="a${i+1}.jpg">`)).join("")}
-    ${item(`<video controls src="av1.mp4"></video>`)}
+function card(media) {
+  return `
+    <div class="card">
+      ${media}
+      <a class="whatsapp-btn" href="${whatsapp}" target="_blank">Order on WhatsApp</a>
+    </div>
   `;
+}
 
-  /* KITCHEN */
-  kitchen.innerHTML = `
-    ${Array.from({length:61}, (_,i) => item(`<img src="ku${i+1}.jpg">`)).join("")}
-    ${Array.from({length:9}, (_,i) => item(`<video controls src="kuv${i+1}.mp4"></video>`)).join("")}
-  `;
+const albaya = document.getElementById("albaya");
+const kitchen = document.getElementById("kitchen");
+const appliance = document.getElementById("appliance");
 
-  /* HOME APPLIANCE */
-  appliance.innerHTML = `
-    ${Array.from({length:4}, (_,i) => item(`<img src="ha${i+1}.jpg">`)).join("")}
-    ${Array.from({length:8}, (_,i) => item(`<video controls src="hav${i+1}.mp4"></video>`)).join("")}
-  `;
+/* ALBAYA */
+for (let i = 1; i <= 41; i++) {
+  albaya.innerHTML += card(`<img src="a${i}.jpg">`);
+}
+albaya.innerHTML += card(`<video controls src="av1.mp4"></video>`);
+
+/* KITCHEN */
+for (let i = 1; i <= 61; i++) {
+  kitchen.innerHTML += card(`<img src="ku${i}.jpg">`);
+}
+for (let i = 1; i <= 9; i++) {
+  kitchen.innerHTML += card(`<video controls src="kuv${i}.mp4"></video>`);
+}
+
+/* HOME APPLIANCES */
+for (let i = 1; i <= 4; i++) {
+  appliance.innerHTML += card(`<img src="ha${i}.jpg">`);
+}
+for (let i = 1; i <= 8; i++) {
+  appliance.innerHTML += card(`<video controls src="hav${i}.mp4"></video>`);
+}
 </script>
 
 </body>
