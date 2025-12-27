@@ -3,86 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Leemah's Store</title>
-
+  <title>Leemah's Store | Premium Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #25d366;
+      --bg: #0a0a0a;
+      --card-bg: #161616;
+      --text: #ffffff;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #fff;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      padding: 20px;
+      padding: 60px 20px;
       text-align: center;
-      background: #141414;
+      background: linear-gradient(180deg, #1a1a1a 0%, var(--bg) 100%);
     }
 
     header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 3rem;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #fff, #25d366);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     header p {
-      font-size: 14px;
-      color: #ccc;
-      margin-top: 8px;
+      max-width: 600px;
+      margin: 15px auto 0;
+      color: #aaa;
+      font-size: 1.1rem;
     }
 
     section {
-      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
     h2 {
-      margin-bottom: 12px;
-      border-left: 4px solid #25d366;
-      padding-left: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    h2::after {
+      content: "";
+      height: 1px;
+      flex-grow: 1;
+      background: rgba(255,255,255,0.1);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 25px;
     }
 
     .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: var(--primary);
+    }
+
+    .media-container {
       position: relative;
-      background: #1b1b1b;
-      border-radius: 12px;
+      aspect-ratio: 4/5;
       overflow: hidden;
     }
 
-    .card img,
-    .card video {
+    .card img, .card video {
       width: 100%;
-      display: block;
+      height: 100%;
+      object-fit: cover;
     }
 
     .whatsapp-btn {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #25d366;
+      display: block;
+      margin: 15px;
+      background: var(--primary);
       color: #000;
       text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: filter 0.2s;
+    }
+
+    .whatsapp-btn:hover {
+      filter: brightness(1.1);
     }
 
     footer {
-      padding: 20px;
+      margin-top: 100px;
+      padding: 60px 20px;
+      background: #111;
       text-align: center;
-      font-size: 13px;
-      color: #aaa;
+      border-top: 1px solid #222;
     }
 
-    footer a {
-      color: #25d366;
-      text-decoration: none;
+    footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
     }
   </style>
 </head>
@@ -90,90 +136,59 @@
 
 <header>
   <h1>Leemah's Store</h1>
-  <p>
-    We sell albayas, kitchen utensils and home appliances that are very nice in quality and affordable in price.
-    We are available 24/7 for quick delivery 🥰
-  </p>
+  <p>Premium Abayas, Kitchen Essentials & Home Appliances. Quality meets affordability with 24/7 lightning-fast delivery. ✨</p>
 </header>
 
-<!-- ALBAYA -->
 <section>
   <h2>Albaya Collection</h2>
   <div class="grid" id="albaya"></div>
 </section>
 
-<!-- KITCHEN -->
 <section>
   <h2>Kitchen Utensils</h2>
   <div class="grid" id="kitchen"></div>
 </section>
 
-<!-- HOME APPLIANCE -->
 <section>
   <h2>Home Appliances</h2>
   <div class="grid" id="appliance"></div>
 </section>
 
 <footer>
-  Contact: <a href="mailto:halimatiamuju@gmail.com">halimatiamuju@gmail.com</a><br>
-  WhatsApp Orders:
-  <a href="https://wa.me/message/BFCJZDIJ5MTEE1" target="_blank">
-    Click here
-  </a>
+  <p>Need help? <a href="mailto:halimatiamuju@gmail.com">Email Us</a></p>
+  <p>Ready to shop? <a href="https://wa.me/message/BFCJZDIJ5MTEE1">Chat on WhatsApp</a></p>
 </footer>
 
 <script>
   const whatsappLink = "https://wa.me/message/BFCJZDIJ5MTEE1";
 
-  function addImage(container, src) {
-    container.innerHTML += `
+  function createCard(src, isVideo = false) {
+    const media = isVideo 
+      ? `<video muted loop onmouseover="this.play()" onmouseout="this.pause()"><source src="${src}" type="video/mp4"></video>`
+      : `<img src="${src}" loading="lazy" alt="Product">`;
+    
+    return `
       <div class="card">
-        <img src="${src}" alt="">
-        <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">Order on WhatsApp</a>
+        <div class="media-container">${media}</div>
+        <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">Order Now</a>
       </div>
     `;
   }
 
-  function addVideo(container, src) {
-    container.innerHTML += `
-      <div class="card">
-        <video controls>
-          <source src="${src}" type="video/mp4">
-        </video>
-        <a class="whatsapp-btn" href="${whatsappLink}" target="_blank">Order on WhatsApp</a>
-      </div>
-    `;
-  }
+  const sections = {
+    albaya: { img: 41, vid: 1, prefix: 'a', vPrefix: 'av' },
+    kitchen: { img: 61, vid: 9, prefix: 'ku', vPrefix: 'kuv' },
+    appliance: { img: 4, vid: 8, prefix: 'ha', vPrefix: 'hav' }
+  };
 
-  const albaya = document.getElementById("albaya");
-  const kitchen = document.getElementById("kitchen");
-  const appliance = document.getElementById("appliance");
-
-  // Albaya images
-  for (let i = 1; i <= 41; i++) {
-    addImage(albaya, `a${i}.jpg`);
-  }
-  // Albaya video
-  addVideo(albaya, "av1.mp4");
-
-  // Kitchen images
-  for (let i = 1; i <= 61; i++) {
-    addImage(kitchen, `ku${i}.jpg`);
-  }
-  // Kitchen videos
-  for (let i = 1; i <= 9; i++) {
-    addVideo(kitchen, `kuv${i}.mp4`);
-  }
-
-  // Home appliance images
-  for (let i = 1; i <= 4; i++) {
-    addImage(appliance, `ha${i}.jpg`);
-  }
-  // Home appliance videos
-  for (let i = 1; i <= 8; i++) {
-    addVideo(appliance, `hav${i}.mp4`);
-  }
+  Object.keys(sections).forEach(id => {
+    const container = document.getElementById(id);
+    const data = sections[id];
+    for(let i=1; i<=data.img; i++) container.innerHTML += createCard(`${data.prefix}${i}.jpg`);
+    for(let i=1; i<=data.vid; i++) container.innerHTML += createCard(`${data.vPrefix}${i}.mp4`, true);
+  });
 </script>
 
 </body>
 </html>
+
