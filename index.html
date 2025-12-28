@@ -292,6 +292,11 @@
             object-fit: cover;
             transition: transform 0.5s;
         }
+        
+        /* Cursor pointer for images only */
+        .product-img {
+            cursor: zoom-in;
+        }
 
         .product-card:hover .product-img,
         .product-card:hover .product-video {
@@ -349,6 +354,44 @@
 
         .whatsapp-order-btn:hover {
             background-color: #128C7E;
+        }
+
+        /* Image Preview Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 5px;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         /* Service Info Section */
@@ -608,7 +651,12 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+    
+    <div id="imgModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -632,12 +680,10 @@
         </div>
     </header>
 
-    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-float" target="_blank" title="Order on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <h2>Welcome to Leemaah's Store</h2>
@@ -649,7 +695,6 @@
         </div>
     </section>
 
-    <!-- Albayas Section -->
     <section class="category-section" id="albayas">
         <div class="container">
             <div class="section-title">
@@ -658,8 +703,7 @@
             </div>
             
             <div class="product-grid" id="albayasGrid">
-                <!-- Albaya Images will be dynamically loaded here -->
-            </div>
+                </div>
             
             <div style="text-align: center; margin-top: 30px;">
                 <p>We have 41 beautiful albaya designs available! Send us a message on WhatsApp to see the full collection.</p>
@@ -670,7 +714,6 @@
         </div>
     </section>
 
-    <!-- Kitchen Utensils Section -->
     <section class="category-section" id="kitchen">
         <div class="container">
             <div class="section-title">
@@ -679,8 +722,7 @@
             </div>
             
             <div class="product-grid" id="kitchenGrid">
-                <!-- Kitchen utensils will be dynamically loaded here -->
-            </div>
+                </div>
             
             <div style="text-align: center; margin-top: 30px;">
                 <p>We have 50+ different kitchen utensils! Contact us on WhatsApp to see more.</p>
@@ -691,7 +733,6 @@
         </div>
     </section>
 
-    <!-- Home Appliances Section -->
     <section class="category-section" id="appliances">
         <div class="container">
             <div class="section-title">
@@ -700,8 +741,7 @@
             </div>
             
             <div class="product-grid" id="appliancesGrid">
-                <!-- Home appliances will be dynamically loaded here -->
-            </div>
+                </div>
             
             <div style="text-align: center; margin-top: 30px;">
                 <p>We have 4 home appliances and 5 demonstration videos! Message us on WhatsApp for more details.</p>
@@ -712,7 +752,6 @@
         </div>
     </section>
 
-    <!-- Service Information -->
     <section class="service-info">
         <div class="container">
             <h2>Why Choose Leemaah's Store?</h2>
@@ -751,7 +790,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-title">
@@ -840,7 +878,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -927,6 +964,19 @@
                 }
             });
         });
+
+        // IMAGE PREVIEW LOGIC
+        const modal = document.getElementById("imgModal");
+        const modalImg = document.getElementById("fullImage");
+        const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        function openPreview(src) {
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        closeBtn.onclick = () => modal.style.display = "none";
+        modal.onclick = (e) => { if(e.target !== modalImg) modal.style.display = "none"; }
         
         // Image data - Load images/videos from local folder (simpler method)
         const imageData = {
@@ -1067,6 +1117,10 @@
                 img.src = item.src;
                 img.alt = item.alt;
                 img.className = "product-img";
+                
+                // Add click event for full screen preview
+                img.onclick = () => openPreview(item.src);
+
                 img.onerror = function() {
                     this.onerror = null;
                     this.src = 'https://via.placeholder.com/300x220/cccccc/969696?text=Image+Loading';
