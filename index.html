@@ -60,18 +60,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 10px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .logo-icon {
-            color: var(--primary);
-            font-size: 1.8rem;
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
         }
 
         .logo h1 {
@@ -484,9 +486,13 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            color: white;
+            gap: 15px;
+        }
+
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
         }
 
         .footer-links {
@@ -521,6 +527,10 @@
             
             .section-title h2 {
                 font-size: 2.2rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
             }
         }
 
@@ -564,6 +574,14 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
+            
+            .logo h1 {
+                display: none;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -582,6 +600,10 @@
             .product-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .logo-img {
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -590,7 +612,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon"><i class="fas fa-store"></i></div>
+                <img src="logo.jpg" alt="Leemaah's Store Logo" class="logo-img">
                 <h1>Leemaah's <span>Store</span></h1>
             </div>
             
@@ -823,8 +845,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-store"></i>
-                    <h3>Leemaah's Store</h3>
+                    <img src="logo.jpg" alt="Leemaah's Store Logo" class="footer-logo-img">
+                    <h3 style="color: white;">Leemaah's Store</h3>
                 </div>
                 <p>Your trusted source for albayas, kitchen utensils, and home appliances</p>
                 <div class="footer-links">
@@ -1112,4 +1134,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
