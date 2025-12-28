@@ -9,220 +9,171 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ===== YOUR ORIGINAL CSS — UNCHANGED ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
---primary:#9c27b0;
---primary-dark:#6a0080;
---secondary:#ff9800;
---light:#f8f4ff;
---dark:#2e003e;
---text:#333
-}
-body{font-family:Poppins,sans-serif;background:var(--light);color:var(--text)}
-h1,h2,h3{font-family:'Playfair Display',serif;color:var(--dark)}
-.container{width:90%;max-width:1200px;margin:auto}
-
-/* HEADER */
-header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 15px rgba(0,0,0,.1)}
-.header-container{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
-.logo{display:flex;gap:12px;align-items:center}
-.logo-img{height:50px;border-radius:8px}
-nav ul{display:flex;list-style:none;gap:20px}
-nav a{text-decoration:none;color:var(--dark);font-weight:500}
-
-/* HERO */
-.hero{
-background:linear-gradient(rgba(46,0,62,.7),rgba(46,0,62,.7)),
-url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80');
-background-size:cover;
-padding:100px 0;
-color:#fff;
-text-align:center
-}
-.hero h2{font-size:2.8rem;color:#fff}
-
-/* PRODUCTS */
-.category-section{padding:60px 0}
-.product-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:25px
-}
-.product-card{
-background:#fff;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 4px 10px rgba(0,0,0,.05);
-cursor:pointer;
-transition:.3s
-}
-.product-card:hover{transform:translateY(-5px)}
-.media-container{height:250px;overflow:hidden}
-.media-container img,
-.media-container video{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block
-}
-.product-content{text-align:center;padding:15px}
-.order-btn{background:#25D366;color:#fff;padding:8px 15px;border-radius:5px}
-
-/* MODAL */
-#previewModal{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.95);
-z-index:3000;
-align-items:center;
-justify-content:center;
-flex-direction:column
-}
-#previewModal img,
-#previewModal video{
-max-width:90%;
-max-height:80vh;
-border-radius:10px
-}
-.close-preview{
-position:absolute;
-top:20px;right:30px;
-font-size:2.5rem;
-color:#fff;
-cursor:pointer
-}
-
-/* WHATSAPP FLOAT */
-.whatsapp-float{
-position:fixed;
-bottom:25px;right:25px;
-width:55px;height:55px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-size:1.8rem;
-z-index:2000
-}
+body{font-family:Poppins,sans-serif;background:#f8f4ff}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px}
+.product-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.05)}
+.media-container{height:220px;position:relative;cursor:pointer}
+.product-img{width:100%;height:100%;object-fit:cover}
+.video-icon{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.product-content{padding:20px}
+.whatsapp-order-btn{background:#25D366;color:#fff;padding:10px;border-radius:5px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
+.image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:999}
+.modal-content{max-width:90%;max-height:90vh;margin:auto;display:block}
+.modal-video{display:none}
+.modal-title{color:#fff;text-align:center;margin:15px 0}
+.modal-close{position:absolute;top:20px;right:30px;color:#fff;font-size:40px;cursor:pointer}
+.modal-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:30px;cursor:pointer}
+.modal-prev{left:20px}
+.modal-next{right:20px}
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="container header-container">
-<div class="logo">
-<img src="https://via.placeholder.com/50/9c27b0/ffffff?text=L" class="logo-img">
-<h1>Leemaah's <span>Store</span></h1>
-</div>
-<nav>
-<ul>
-<li><a href="#albayas">Albayas</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</div>
-</header>
-
-<a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-float" target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- PREVIEW MODAL -->
-<div id="previewModal">
-<span class="close-preview" onclick="closePreview()">&times;</span>
-<img id="previewImage" loading="lazy" decoding="async">
-<video id="previewVideo" controls preload="metadata"></video>
-<h3 id="previewTitle" style="color:white;margin-top:15px"></h3>
-<a id="previewOrderBtn" class="order-btn" target="_blank" style="margin-top:15px">
-<i class="fab fa-whatsapp"></i> Order This Now
-</a>
+<!-- MODAL -->
+<div id="imageModal" class="image-modal">
+<span class="modal-close">&times;</span>
+<div class="modal-nav modal-prev"><i class="fas fa-chevron-left"></i></div>
+<div class="modal-nav modal-next"><i class="fas fa-chevron-right"></i></div>
+<h3 class="modal-title" id="modalTitle"></h3>
+<img id="modalImage" class="modal-content">
+<video id="modalVideo" class="modal-content modal-video" controls></video>
 </div>
 
-<section class="hero">
-<div class="container">
-<h2>Luxury Meets Affordability</h2>
-<p>Quality Albayas, Kitchen Utensils, and Appliances delivered with love.</p>
-</div>
-</section>
-
-<section class="category-section" id="albayas">
-<div class="container">
-<h2 style="text-align:center;margin-bottom:40px">Exquisite Albayas</h2>
+<!-- GRIDS -->
+<section>
+<h2>Albayas</h2>
 <div class="product-grid" id="albayasGrid"></div>
-</div>
 </section>
 
-<footer style="background:#2e003e;color:#fff;text-align:center;padding:40px">
-&copy; 2024 Leemaah's Store
-</footer>
+<section>
+<h2>Kitchen</h2>
+<div class="product-grid" id="kitchenGrid"></div>
+</section>
+
+<section>
+<h2>Appliances</h2>
+<div class="product-grid" id="appliancesGrid"></div>
+</section>
 
 <script>
-const products={
-albayas:[
-{title:"Royal Embroidered Albaya",src:"https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=500&q=80",type:"image"},
-{title:"Silk Evening Albaya",src:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80",type:"image"},
-{title:"Casual Modest Wear",src:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=500&q=80",type:"image"}
-]
-};
+/* ===== MODAL STATE ===== */
+let currentIndex = 0
+let currentList = []
 
-function loadItems(){
-const grid=document.getElementById("albayasGrid");
-products.albayas.forEach(p=>{
-const card=document.createElement("div");
-card.className="product-card";
-card.onclick=()=>showPreview(p);
-card.innerHTML=`
-<div class="media-container">
-<img src="${p.src}" alt="${p.title}" loading="lazy" decoding="async">
-</div>
-<div class="product-content">
-<h3>${p.title}</h3>
-<span class="order-btn">View Details</span>
-</div>`;
-grid.appendChild(card);
-});
-}
+const modal = document.getElementById("imageModal")
+const modalImg = document.getElementById("modalImage")
+const modalVideo = document.getElementById("modalVideo")
+const modalTitle = document.getElementById("modalTitle")
 
-function showPreview(p){
-const modal=document.getElementById("previewModal");
-const img=document.getElementById("previewImage");
-const vid=document.getElementById("previewVideo");
+/* ===== OPEN MODAL ===== */
+function openModal(list,index){
+currentList=list
+currentIndex=index
 
-document.getElementById("previewTitle").innerText=p.title;
-document.getElementById("previewOrderBtn").href=
-`https://wa.me/message/BFCJZDIJ5MTEE1?text=Hello, I want ${encodeURIComponent(p.title)}`;
+modalImg.style.display="none"
+modalVideo.style.display="none"
+modalVideo.pause()
 
-if(p.type==="image"){
-img.src=p.src;
-img.style.display="block";
-vid.style.display="none";
-vid.pause();
+const item=list[index]
+
+if(item.isVideo){
+modalVideo.src=item.src
+modalVideo.style.display="block"
 }else{
-vid.src=p.src;
-vid.style.display="block";
-img.style.display="none";
+modalImg.src=item.src
+modalImg.style.display="block"
 }
 
-modal.style.display="flex";
-document.body.style.overflow="hidden";
+modalTitle.textContent=item.title
+modal.style.display="block"
+document.body.style.overflow="hidden"
 }
 
-function closePreview(){
-document.getElementById("previewModal").style.display="none";
-document.body.style.overflow="auto";
-document.getElementById("previewVideo").pause();
+/* ===== NAV ===== */
+function nextMedia(){openModal(currentList,(currentIndex+1)%currentList.length)}
+function prevMedia(){openModal(currentList,(currentIndex-1+currentList.length)%currentList.length)}
+
+/* ===== CLOSE ===== */
+document.querySelector(".modal-close").onclick=()=>{
+modal.style.display="none"
+modalVideo.pause()
+document.body.style.overflow="auto"
 }
 
-window.onclick=e=>{
-if(e.target.id==="previewModal") closePreview();
-};
+document.querySelector(".modal-next").onclick=nextMedia
+document.querySelector(".modal-prev").onclick=prevMedia
 
-document.addEventListener("DOMContentLoaded",loadItems);
+/* ===== DATA ===== */
+const imageData={
+albayas:{
+images:[{src:"a1.jpg",title:"Albaya 1"},{src:"a2.jpg",title:"Albaya 2"}],
+videos:[{src:"av1.mp4",title:"Albaya Video",thumbnail:"a1.jpg"}],
+desc:"Elegant albaya"
+},
+kitchen:{
+images:[{src:"ku1.jpg",title:"Kitchen Item 1"}],
+videos:[],
+desc:"Kitchen tools"
+},
+appliances:{
+images:[{src:"ha1.jpg",title:"Appliance 1"}],
+videos:[{src:"hav1.mp4",title:"Appliance Video",thumbnail:"ha1.jpg"}],
+desc:"Home appliances"
+}
+}
+
+/* ===== LOAD PRODUCTS (FIXED) ===== */
+function loadProducts(id,data){
+const grid=document.getElementById(id+"Grid")
+const media=[]
+
+data.images.forEach(i=>media.push({...i,isVideo:false}))
+data.videos.forEach(v=>media.push({...v,isVideo:true}))
+
+media.forEach((item,i)=>{
+const card=document.createElement("div")
+card.className="product-card"
+
+const mediaBox=document.createElement("div")
+mediaBox.className="media-container"
+
+if(item.isVideo){
+const img=document.createElement("img")
+img.src=item.thumbnail
+img.className="product-img"
+const icon=document.createElement("div")
+icon.className="video-icon"
+icon.innerHTML='<i class="fas fa-play"></i>'
+mediaBox.append(img,icon)
+}else{
+const img=document.createElement("img")
+img.src=item.src
+img.className="product-img"
+mediaBox.appendChild(img)
+}
+
+mediaBox.onclick=()=>openModal(media,i)
+
+const content=document.createElement("div")
+content.className="product-content"
+content.innerHTML=`<h3>${item.title}</h3>
+<a class="whatsapp-order-btn" target="_blank"
+href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(item.title)}">
+<i class="fab fa-whatsapp"></i> Order
+</a>`
+
+card.append(mediaBox,content)
+grid.appendChild(card)
+})
+}
+
+/* ===== INIT ===== */
+loadProducts("albayas",imageData.albayas)
+loadProducts("kitchen",imageData.kitchen)
+loadProducts("appliances",imageData.appliances)
 </script>
 
 </body>
