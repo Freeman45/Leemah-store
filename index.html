@@ -284,6 +284,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
+            cursor: pointer;
         }
 
         .product-img, .product-video {
@@ -349,6 +350,102 @@
 
         .whatsapp-order-btn:hover {
             background-color: #128C7E;
+        }
+
+        /* Image Modal - Full Screen View */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            padding: 50px 0;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+            overflow: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 5px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-video {
+            max-width: 90%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+        }
+
+        .modal-title {
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1.5rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1002;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-nav:hover {
+            background-color: var(--primary);
+        }
+
+        .modal-prev {
+            left: 30px;
+        }
+
+        .modal-next {
+            right: 30px;
         }
 
         /* Service Info Section */
@@ -582,6 +679,26 @@
             .logo-img {
                 height: 50px;
             }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-close {
+                top: 10px;
+                right: 20px;
+                font-size: 35px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -603,6 +720,14 @@
             
             .logo-img {
                 height: 45px;
+            }
+            
+            .image-modal {
+                padding: 20px 0;
+            }
+            
+            .modal-content {
+                max-width: 95%;
             }
         }
     </style>
@@ -636,6 +761,18 @@
     <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-float" target="_blank" title="Order on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Image Modal for Full Screen View -->
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-nav modal-prev"><i class="fas fa-chevron-left"></i></div>
+        <div class="modal-nav modal-next"><i class="fas fa-chevron-right"></i></div>
+        <div class="modal-container">
+            <h3 class="modal-title" id="modalImageTitle"></h3>
+            <img class="modal-content" id="modalImage">
+            <video class="modal-content modal-video" id="modalVideo" controls></video>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -928,6 +1065,19 @@
             });
         });
         
+        // Image Modal Variables
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalVideo = document.getElementById("modalVideo");
+        const modalTitle = document.getElementById("modalImageTitle");
+        const closeBtn = document.querySelector(".modal-close");
+        const prevBtn = document.querySelector(".modal-prev");
+        const nextBtn = document.querySelector(".modal-next");
+        
+        // Store all media items for navigation
+        let allMediaItems = [];
+        let currentMediaIndex = 0;
+        
         // Image data - Load images/videos from local folder (simpler method)
         const imageData = {
             albayas: {
@@ -975,7 +1125,7 @@
                     { src: "a41.jpg", alt: "Albaya Design 41", title: "Elegant Albaya 41" }
                 ],
                 videos: [
-                    { src: "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: "a1.jpg" }
+                    { src: "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: "a1.jpg", isVideo: true }
                 ],
                 description: "Beautifully designed albaya with intricate embroidery. Perfect for special occasions."
             },
@@ -1041,27 +1191,100 @@
                     { src: "ha4.jpg", alt: "Home Appliance 4", title: "Toaster Oven" }
                 ],
                 videos: [
-                    { src: "hav1.mp4", alt: "Home Appliance Video 1", title: "Home Appliance Demo 1", thumbnail: "ha1.jpg" },
-                    { src: "hav2.mp4", alt: "Home Appliance Video 2", title: "Home Appliance Demo 2", thumbnail: "ha2.jpg" },
-                    { src: "hav5.mp4", alt: "Home Appliance Video 5", title: "Home Appliance Demo 5", thumbnail: "ha3.jpg" },
-                    { src: "hav6.mp4", alt: "Home Appliance Video 6", title: "Home Appliance Demo 6", thumbnail: "ha4.jpg" },
-                    { src: "hav8.mp4", alt: "Home Appliance Video 8", title: "Home Appliance Demo 8", thumbnail: "ha1.jpg" }
+                    { src: "hav1.mp4", alt: "Home Appliance Video 1", title: "Home Appliance Demo 1", thumbnail: "ha1.jpg", isVideo: true },
+                    { src: "hav2.mp4", alt: "Home Appliance Video 2", title: "Home Appliance Demo 2", thumbnail: "ha2.jpg", isVideo: true },
+                    { src: "hav5.mp4", alt: "Home Appliance Video 5", title: "Home Appliance Demo 5", thumbnail: "ha3.jpg", isVideo: true },
+                    { src: "hav6.mp4", alt: "Home Appliance Video 6", title: "Home Appliance Demo 6", thumbnail: "ha4.jpg", isVideo: true },
+                    { src: "hav8.mp4", alt: "Home Appliance Video 8", title: "Home Appliance Demo 8", thumbnail: "ha1.jpg", isVideo: true }
                 ],
                 description: "Essential home appliances for everyday convenience."
             }
         };
 
-        // Function to load images/videos dynamically with WhatsApp button
+        // Function to open modal with image or video
+        function openModal(mediaItem, index) {
+            currentMediaIndex = index;
+            
+            // Hide both initially
+            modalImg.style.display = "none";
+            modalVideo.style.display = "none";
+            
+            if (mediaItem.isVideo) {
+                // It's a video
+                modalVideo.src = mediaItem.src;
+                modalVideo.style.display = "block";
+                modalTitle.textContent = mediaItem.title;
+            } else {
+                // It's an image
+                modalImg.src = mediaItem.src;
+                modalImg.alt = mediaItem.alt;
+                modalImg.style.display = "block";
+                modalTitle.textContent = mediaItem.title;
+            }
+            
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+
+        // Function to navigate to next media
+        function nextMedia() {
+            currentMediaIndex = (currentMediaIndex + 1) % allMediaItems.length;
+            openModal(allMediaItems[currentMediaIndex], currentMediaIndex);
+        }
+
+        // Function to navigate to previous media
+        function prevMedia() {
+            currentMediaIndex = (currentMediaIndex - 1 + allMediaItems.length) % allMediaItems.length;
+            openModal(allMediaItems[currentMediaIndex], currentMediaIndex);
+        }
+
+        // Close modal when clicking X
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+            modalVideo.pause(); // Pause video when closing modal
+        }
+
+        // Close modal when clicking outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+                modalVideo.pause();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (modal.style.display === "block") {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                    modalVideo.pause();
+                } else if (event.key === "ArrowRight") {
+                    nextMedia();
+                } else if (event.key === "ArrowLeft") {
+                    prevMedia();
+                }
+            }
+        });
+
+        // Next/Previous buttons
+        nextBtn.onclick = nextMedia;
+        prevBtn.onclick = prevMedia;
+
+        // Function to load images/videos dynamically with WhatsApp button and modal functionality
         function loadProducts(categoryId, data) {
             const grid = document.getElementById(categoryId + "Grid");
             
             // Load images
-            data.images.forEach(item => {
+            data.images.forEach((item, index) => {
                 const card = document.createElement("div");
                 card.className = `${categoryId}-card product-card`;
 
                 const mediaContainer = document.createElement("div");
                 mediaContainer.className = "media-container";
+                mediaContainer.style.cursor = "pointer";
 
                 const img = document.createElement("img");
                 img.src = item.src;
@@ -1087,15 +1310,24 @@
                 card.appendChild(content);
 
                 grid.appendChild(card);
+                
+                // Store media item for modal
+                const mediaItem = { ...item, category: categoryId };
+                allMediaItems.push(mediaItem);
+                
+                // Add click event to open modal
+                const itemIndex = allMediaItems.length - 1;
+                mediaContainer.addEventListener('click', () => openModal(mediaItem, itemIndex));
             });
 
             // Load videos
-            data.videos.forEach(video => {
+            data.videos.forEach((video, index) => {
                 const card = document.createElement("div");
                 card.className = `${categoryId}-card product-card`;
 
                 const mediaContainer = document.createElement("div");
                 mediaContainer.className = "media-container";
+                mediaContainer.style.cursor = "pointer";
 
                 const vid = document.createElement("video");
                 vid.src = video.src;
@@ -1123,6 +1355,18 @@
                 card.appendChild(content);
 
                 grid.appendChild(card);
+                
+                // Store video item for modal
+                const mediaItem = { ...video, isVideo: true, category: categoryId };
+                allMediaItems.push(mediaItem);
+                
+                // Add click event to open modal
+                const itemIndex = allMediaItems.length - 1;
+                mediaContainer.addEventListener('click', (e) => {
+                    // Don't open modal if clicking video controls
+                    if (e.target === vid || e.target === videoIcon) return;
+                    openModal(mediaItem, itemIndex);
+                });
             });
         }
 
@@ -1134,4 +1378,4 @@
         });
     </script>
 </body>
-</html>
+            </html>
