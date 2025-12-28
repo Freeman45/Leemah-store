@@ -349,30 +349,6 @@
             background-color: #128C7E;
         }
 
-        /* Load More Button */
-        .load-more-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .load-more-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .load-more-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
         /* Service Info Section */
         .service-info {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -487,44 +463,6 @@
             background-color: var(--primary);
             color: white;
             transform: translateY(-3px);
-        }
-
-        .contact-form {
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            background-color: white;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .contact-form .btn {
-            width: 100%;
         }
 
         /* Footer */
@@ -701,11 +639,11 @@
                 <!-- Albaya Images will be dynamically loaded here -->
             </div>
             
-            <div class="load-more-container">
-                <button class="load-more-btn" id="loadMoreAlbayas">
-                    <i class="fas fa-plus"></i> Load More Albayas
-                </button>
-                <p style="margin-top: 15px; color: #666;">We have 41 beautiful albaya designs available! Send us a message on WhatsApp to see the full collection.</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 41 beautiful albaya designs available! Send us a message on WhatsApp to see the full collection.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Albayas on WhatsApp
+                </a>
             </div>
         </div>
     </section>
@@ -715,18 +653,18 @@
         <div class="container">
             <div class="section-title">
                 <h2>Kitchen Utensils</h2>
-                <p>Quality tools for your culinary needs - 61 items available</p>
+                <p>Quality tools for your culinary needs - 50+ items available</p>
             </div>
             
             <div class="product-grid" id="kitchenGrid">
                 <!-- Kitchen utensils will be dynamically loaded here -->
             </div>
             
-            <div class="load-more-container">
-                <button class="load-more-btn" id="loadMoreKitchen">
-                    <i class="fas fa-plus"></i> Load More Kitchen Items
-                </button>
-                <p style="margin-top: 15px; color: #666;">We have 61 different kitchen utensils! Contact us on WhatsApp to see more.</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 50+ different kitchen utensils! Contact us on WhatsApp to see more.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Kitchen Items on WhatsApp
+                </a>
             </div>
         </div>
     </section>
@@ -745,6 +683,9 @@
             
             <div style="text-align: center; margin-top: 30px;">
                 <p>We have 4 home appliances and 5 demonstration videos! Message us on WhatsApp for more details.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Appliances on WhatsApp
+                </a>
             </div>
         </div>
     </section>
@@ -934,20 +875,16 @@
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
             
-            // Show confirmation
             alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
             
-            // Create a mailto link
             const mailtoLink = `mailto:halimatiamuju@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`)}`;
             window.location.href = mailtoLink;
             
-            // Reset the form
             contactForm.reset();
         });
         
@@ -969,236 +906,209 @@
             });
         });
         
-        // Base URL for GitHub repository
-        const baseUrl = "https://raw.githubusercontent.com/Freeman45/Leemah-store/main/";
-        
-        // Image data - ALL your images with CORRECT GitHub URLs
+        // Image data - Load images/videos from local folder (simpler method)
         const imageData = {
             albayas: {
                 images: [
-                    { src: baseUrl + "a1.jpg", alt: "Albaya Design 1", title: "Elegant Embroidered Albaya 1" },
-                    { src: baseUrl + "a2.jpg", alt: "Albaya Design 2", title: "Beautiful Albaya Design 2" },
-                    { src: baseUrl + "a3.jpg", alt: "Albaya Design 3", title: "Luxury Silk Albaya 3" },
-                    { src: baseUrl + "a4.jpg", alt: "Albaya Design 4", title: "Casual Everyday Albaya 4" },
-                    { src: baseUrl + "a5.jpg", alt: "Albaya Design 5", title: "Elegant Albaya Design 5" },
-                    { src: baseUrl + "a6.jpg", alt: "Albaya Design 6", title: "Stylish Albaya 6" },
-                    { src: baseUrl + "a7.jpg", alt: "Albaya Design 7", title: "Modern Albaya Design 7" },
-                    { src: baseUrl + "a8.jpg", alt: "Albaya Design 8", title: "Traditional Albaya 8" },
-                    { src: baseUrl + "a9.jpg", alt: "Albaya Design 9", title: "Fashionable Albaya 9" },
-                    { src: baseUrl + "a10.jpg", alt: "Albaya Design 10", title: "Elegant Albaya 10" },
-                    { src: baseUrl + "a11.jpg", alt: "Albaya Design 11", title: "Beautiful Albaya 11" },
-                    { src: baseUrl + "a12.jpg", alt: "Albaya Design 12", title: "Luxury Albaya 12" },
-                    { src: baseUrl + "a13.jpg", alt: "Albaya Design 13", title: "Casual Albaya 13" },
-                    { src: baseUrl + "a14.jpg", alt: "Albaya Design 14", title: "Elegant Albaya 14" },
-                    { src: baseUrl + "a15.jpg", alt: "Albaya Design 15", title: "Stylish Albaya 15" },
-                    { src: baseUrl + "a16.jpg", alt: "Albaya Design 16", title: "Modern Albaya 16" },
-                    { src: baseUrl + "a17.jpg", alt: "Albaya Design 17", title: "Traditional Albaya 17" },
-                    { src: baseUrl + "a18.jpg", alt: "Albaya Design 18", title: "Fashionable Albaya 18" },
-                    { src: baseUrl + "a19.jpg", alt: "Albaya Design 19", title: "Elegant Albaya 19" },
-                    { src: baseUrl + "a20.jpg", alt: "Albaya Design 20", title: "Beautiful Albaya 20" },
-                    { src: baseUrl + "a21.jpg", alt: "Albaya Design 21", title: "Luxury Albaya 21" },
-                    { src: baseUrl + "a22.jpg", alt: "Albaya Design 22", title: "Casual Albaya 22" },
-                    { src: baseUrl + "a23.jpg", alt: "Albaya Design 23", title: "Elegant Albaya 23" },
-                    { src: baseUrl + "a24.jpg", alt: "Albaya Design 24", title: "Stylish Albaya 24" },
-                    { src: baseUrl + "a25.jpg", alt: "Albaya Design 25", title: "Modern Albaya 25" },
-                    { src: baseUrl + "a26.jpg", alt: "Albaya Design 26", title: "Traditional Albaya 26" },
-                    { src: baseUrl + "a27.jpg", alt: "Albaya Design 27", title: "Fashionable Albaya 27" },
-                    { src: baseUrl + "a28.jpg", alt: "Albaya Design 28", title: "Elegant Albaya 28" },
-                    { src: baseUrl + "a29.jpg", alt: "Albaya Design 29", title: "Beautiful Albaya 29" },
-                    { src: baseUrl + "a30.jpg", alt: "Albaya Design 30", title: "Luxury Albaya 30" },
-                    { src: baseUrl + "a31.jpg", alt: "Albaya Design 31", title: "Casual Albaya 31" },
-                    { src: baseUrl + "a32.jpg", alt: "Albaya Design 32", title: "Elegant Albaya 32" },
-                    { src: baseUrl + "a33.jpg", alt: "Albaya Design 33", title: "Stylish Albaya 33" },
-                    { src: baseUrl + "a34.jpg", alt: "Albaya Design 34", title: "Modern Albaya 34" },
-                    { src: baseUrl + "a35.jpg", alt: "Albaya Design 35", title: "Traditional Albaya 35" },
-                    { src: baseUrl + "a36.jpg", alt: "Albaya Design 36", title: "Fashionable Albaya 36" },
-                    { src: baseUrl + "a37.jpg", alt: "Albaya Design 37", title: "Elegant Albaya 37" },
-                    { src: baseUrl + "a38.jpg", alt: "Albaya Design 38", title: "Beautiful Albaya 38" },
-                    { src: baseUrl + "a39.jpg", alt: "Albaya Design 39", title: "Luxury Albaya 39" },
-                    { src: baseUrl + "a40.jpg", alt: "Albaya Design 40", title: "Casual Albaya 40" },
-                    { src: baseUrl + "a41.jpg", alt: "Albaya Design 41", title: "Elegant Albaya 41" }
+                    { src: "a1.jpg", alt: "Albaya Design 1", title: "Elegant Embroidered Albaya 1" },
+                    { src: "a2.jpg", alt: "Albaya Design 2", title: "Beautiful Albaya Design 2" },
+                    { src: "a3.jpg", alt: "Albaya Design 3", title: "Luxury Silk Albaya 3" },
+                    { src: "a4.jpg", alt: "Albaya Design 4", title: "Casual Everyday Albaya 4" },
+                    { src: "a5.jpg", alt: "Albaya Design 5", title: "Elegant Albaya Design 5" },
+                    { src: "a6.jpg", alt: "Albaya Design 6", title: "Stylish Albaya 6" },
+                    { src: "a7.jpg", alt: "Albaya Design 7", title: "Modern Albaya Design 7" },
+                    { src: "a8.jpg", alt: "Albaya Design 8", title: "Traditional Albaya 8" },
+                    { src: "a9.jpg", alt: "Albaya Design 9", title: "Fashionable Albaya 9" },
+                    { src: "a10.jpg", alt: "Albaya Design 10", title: "Elegant Albaya 10" },
+                    { src: "a11.jpg", alt: "Albaya Design 11", title: "Beautiful Albaya 11" },
+                    { src: "a12.jpg", alt: "Albaya Design 12", title: "Luxury Albaya 12" },
+                    { src: "a13.jpg", alt: "Albaya Design 13", title: "Casual Albaya 13" },
+                    { src: "a14.jpg", alt: "Albaya Design 14", title: "Elegant Albaya 14" },
+                    { src: "a15.jpg", alt: "Albaya Design 15", title: "Stylish Albaya 15" },
+                    { src: "a16.jpg", alt: "Albaya Design 16", title: "Modern Albaya 16" },
+                    { src: "a17.jpg", alt: "Albaya Design 17", title: "Traditional Albaya 17" },
+                    { src: "a18.jpg", alt: "Albaya Design 18", title: "Fashionable Albaya 18" },
+                    { src: "a19.jpg", alt: "Albaya Design 19", title: "Elegant Albaya 19" },
+                    { src: "a20.jpg", alt: "Albaya Design 20", title: "Beautiful Albaya 20" },
+                    { src: "a21.jpg", alt: "Albaya Design 21", title: "Luxury Albaya 21" },
+                    { src: "a22.jpg", alt: "Albaya Design 22", title: "Casual Albaya 22" },
+                    { src: "a23.jpg", alt: "Albaya Design 23", title: "Elegant Albaya 23" },
+                    { src: "a24.jpg", alt: "Albaya Design 24", title: "Stylish Albaya 24" },
+                    { src: "a25.jpg", alt: "Albaya Design 25", title: "Modern Albaya 25" },
+                    { src: "a26.jpg", alt: "Albaya Design 26", title: "Traditional Albaya 26" },
+                    { src: "a27.jpg", alt: "Albaya Design 27", title: "Fashionable Albaya 27" },
+                    { src: "a28.jpg", alt: "Albaya Design 28", title: "Elegant Albaya 28" },
+                    { src: "a29.jpg", alt: "Albaya Design 29", title: "Beautiful Albaya 29" },
+                    { src: "a30.jpg", alt: "Albaya Design 30", title: "Luxury Albaya 30" },
+                    { src: "a31.jpg", alt: "Albaya Design 31", title: "Casual Albaya 31" },
+                    { src: "a32.jpg", alt: "Albaya Design 32", title: "Elegant Albaya 32" },
+                    { src: "a33.jpg", alt: "Albaya Design 33", title: "Stylish Albaya 33" },
+                    { src: "a34.jpg", alt: "Albaya Design 34", title: "Modern Albaya 34" },
+                    { src: "a35.jpg", alt: "Albaya Design 35", title: "Traditional Albaya 35" },
+                    { src: "a36.jpg", alt: "Albaya Design 36", title: "Fashionable Albaya 36" },
+                    { src: "a37.jpg", alt: "Albaya Design 37", title: "Elegant Albaya 37" },
+                    { src: "a38.jpg", alt: "Albaya Design 38", title: "Beautiful Albaya 38" },
+                    { src: "a39.jpg", alt: "Albaya Design 39", title: "Luxury Albaya 39" },
+                    { src: "a40.jpg", alt: "Albaya Design 40", title: "Casual Albaya 40" },
+                    { src: "a41.jpg", alt: "Albaya Design 41", title: "Elegant Albaya 41" }
                 ],
                 videos: [
-                    { src: baseUrl + "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: baseUrl + "a1.jpg" }
+                    { src: "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: "a1.jpg" }
                 ],
                 description: "Beautifully designed albaya with intricate embroidery. Perfect for special occasions."
             },
-            
+
             kitchen: {
                 images: [
-                    { src: baseUrl + "ku1.jpg", alt: "Kitchen Utensil 1", title: "Non-Stick Cookware Set" },
-                    { src: baseUrl + "ku2.jpg", alt: "Kitchen Utensil 2", title: "Stainless Steel Utensil Set" },
-                    { src: baseUrl + "ku3.jpg", alt: "Kitchen Utensil 3", title: "Ceramic Dinnerware Set" },
-                    { src: baseUrl + "ku4.jpg", alt: "Kitchen Utensil 4", title: "Cutlery Set" },
-                    { src: baseUrl + "ku5.jpg", alt: "Kitchen Utensil 5", title: "Mixing Bowls" },
-                    { src: baseUrl + "ku10.jpg", alt: "Kitchen Utensil 10", title: "Baking Tools" },
-                    { src: baseUrl + "ku11.jpg", alt: "Kitchen Utensil 11", title: "Kitchen Knives Set" },
-                    { src: baseUrl + "ku12.jpg", alt: "Kitchen Utensil 12", title: "Measuring Cups" },
-                    { src: baseUrl + "ku13.jpg", alt: "Kitchen Utensil 13", title: "Food Storage Containers" },
-                    { src: baseUrl + "ku14.jpg", alt: "Kitchen Utensil 14", title: "Spatula Set" },
-                    { src: baseUrl + "ku15.jpg", alt: "Kitchen Utensil 15", title: "Kitchen Timer" },
-                    { src: baseUrl + "ku16.jpg", alt: "Kitchen Utensil 16", title: "Colander" },
-                    { src: baseUrl + "ku17.jpg", alt: "Kitchen Utensil 17", title: "Grater" },
-                    { src: baseUrl + "ku18.jpg", alt: "Kitchen Utensil 18", title: "Peeler" },
-                    { src: baseUrl + "ku19.jpg", alt: "Kitchen Utensil 19", title: "Can Opener" },
-                    { src: baseUrl + "ku20.jpg", alt: "Kitchen Utensil 20", title: "Bottle Opener" },
-                    { src: baseUrl + "ku21.jpg", alt: "Kitchen Utensil 21", title: "Kitchen Scissors" },
-                    { src: baseUrl + "ku22.jpg", alt: "Kitchen Utensil 22", title: "Tongs" },
-                    { src: baseUrl + "ku23.jpg", alt: "Kitchen Utensil 23", title: "Whisk" },
-                    { src: baseUrl + "ku24.jpg", alt: "Kitchen Utensil 24", title: "Ladle" },
-                    { src: baseUrl + "ku25.jpg", alt: "Kitchen Utensil 25", title: "Slotted Spoon" },
-                    { src: baseUrl + "ku26.jpg", alt: "Kitchen Utensil 26", title: "Solid Spoon" },
-                    { src: baseUrl + "ku27.jpg", alt: "Kitchen Utensil 27", title: "Serving Spoons" },
-                    { src: baseUrl + "ku28.jpg", alt: "Kitchen Utensil 28", title: "Kitchen Scale" },
-                    { src: baseUrl + "ku29.jpg", alt: "Kitchen Utensil 29", title: "Mixing Spoons" },
-                    { src: baseUrl + "ku30.jpg", alt: "Kitchen Utensil 30", title: "Kitchen Brush" },
-                    { src: baseUrl + "ku31.jpg", alt: "Kitchen Utensil 31", title: "Potato Masher" },
-                    { src: baseUrl + "ku32.jpg", alt: "Kitchen Utensil 32", title: "Garlic Press" },
-                    { src: baseUrl + "ku33.jpg", alt: "Kitchen Utensil 33", title: "Ice Cream Scoop" },
-                    { src: baseUrl + "ku34.jpg", alt: "Kitchen Utensil 34", title: "Pizza Cutter" },
-                    { src: baseUrl + "ku35.jpg", alt: "Kitchen Utensil 35", title: "Egg Slicer" },
-                    { src: baseUrl + "ku36.jpg", alt: "Kitchen Utensil 36", title: "Vegetable Chopper" },
-                    { src: baseUrl + "ku37.jpg", alt: "Kitchen Utensil 37", title: "Salad Spinner" },
-                    { src: baseUrl + "ku38.jpg", alt: "Kitchen Utensil 38", title: "Strainer" },
-                    { src: baseUrl + "ku39.jpg", alt: "Kitchen Utensil 39", title: "Tea Infuser" },
-                    { src: baseUrl + "ku40.jpg", alt: "Kitchen Utensil 40", title: "Coffee Grinder" },
-                    { src: baseUrl + "ku41.jpg", alt: "Kitchen Utensil 41", title: "Blender" },
-                    { src: baseUrl + "ku42.jpg", alt: "Kitchen Utensil 42", title: "Food Processor" },
-                    { src: baseUrl + "ku43.jpg", alt: "Kitchen Utensil 43", title: "Toaster" },
-                    { src: baseUrl + "ku44.jpg", alt: "Kitchen Utensil 44", title: "Electric Kettle" },
-                    { src: baseUrl + "ku45.jpg", alt: "Kitchen Utensil 45", title: "Rice Cooker" },
-                    { src: baseUrl + "ku46.jpg", alt: "Kitchen Utensil 46", title: "Slow Cooker" },
-                    { src: baseUrl + "ku47.jpg", alt: "Kitchen Utensil 47", title: "Pressure Cooker" },
-                    { src: baseUrl + "ku48.jpg", alt: "Kitchen Utensil 48", title: "Waffle Maker" },
-                    { src: baseUrl + "ku49.jpg", alt: "Kitchen Utensil 49", title: "Sandwich Maker" },
-                    { src: baseUrl + "ku50.jpg", alt: "Kitchen Utensil 50", title: "Griddle" }
+                    { src: "ku1.jpg", alt: "Kitchen Utensil 1", title: "Non-Stick Cookware Set" },
+                    { src: "ku2.jpg", alt: "Kitchen Utensil 2", title: "Stainless Steel Utensil Set" },
+                    { src: "ku3.jpg", alt: "Kitchen Utensil 3", title: "Ceramic Dinnerware Set" },
+                    { src: "ku4.jpg", alt: "Kitchen Utensil 4", title: "Cutlery Set" },
+                    { src: "ku5.jpg", alt: "Kitchen Utensil 5", title: "Mixing Bowls" },
+                    { src: "ku10.jpg", alt: "Kitchen Utensil 10", title: "Baking Tools" },
+                    { src: "ku11.jpg", alt: "Kitchen Utensil 11", title: "Kitchen Knives Set" },
+                    { src: "ku12.jpg", alt: "Kitchen Utensil 12", title: "Measuring Cups" },
+                    { src: "ku13.jpg", alt: "Kitchen Utensil 13", title: "Food Storage Containers" },
+                    { src: "ku14.jpg", alt: "Kitchen Utensil 14", title: "Spatula Set" },
+                    { src: "ku15.jpg", alt: "Kitchen Utensil 15", title: "Kitchen Timer" },
+                    { src: "ku16.jpg", alt: "Kitchen Utensil 16", title: "Colander" },
+                    { src: "ku17.jpg", alt: "Kitchen Utensil 17", title: "Grater" },
+                    { src: "ku18.jpg", alt: "Kitchen Utensil 18", title: "Peeler" },
+                    { src: "ku19.jpg", alt: "Kitchen Utensil 19", title: "Can Opener" },
+                    { src: "ku20.jpg", alt: "Kitchen Utensil 20", title: "Bottle Opener" },
+                    { src: "ku21.jpg", alt: "Kitchen Utensil 21", title: "Kitchen Scissors" },
+                    { src: "ku22.jpg", alt: "Kitchen Utensil 22", title: "Tongs" },
+                    { src: "ku23.jpg", alt: "Kitchen Utensil 23", title: "Whisk" },
+                    { src: "ku24.jpg", alt: "Kitchen Utensil 24", title: "Ladle" },
+                    { src: "ku25.jpg", alt: "Kitchen Utensil 25", title: "Slotted Spoon" },
+                    { src: "ku26.jpg", alt: "Kitchen Utensil 26", title: "Solid Spoon" },
+                    { src: "ku27.jpg", alt: "Kitchen Utensil 27", title: "Serving Spoons" },
+                    { src: "ku28.jpg", alt: "Kitchen Utensil 28", title: "Kitchen Scale" },
+                    { src: "ku29.jpg", alt: "Kitchen Utensil 29", title: "Mixing Spoons" },
+                    { src: "ku30.jpg", alt: "Kitchen Utensil 30", title: "Kitchen Brush" },
+                    { src: "ku31.jpg", alt: "Kitchen Utensil 31", title: "Potato Masher" },
+                    { src: "ku32.jpg", alt: "Kitchen Utensil 32", title: "Garlic Press" },
+                    { src: "ku33.jpg", alt: "Kitchen Utensil 33", title: "Ice Cream Scoop" },
+                    { src: "ku34.jpg", alt: "Kitchen Utensil 34", title: "Pizza Cutter" },
+                    { src: "ku35.jpg", alt: "Kitchen Utensil 35", title: "Egg Slicer" },
+                    { src: "ku36.jpg", alt: "Kitchen Utensil 36", title: "Vegetable Chopper" },
+                    { src: "ku37.jpg", alt: "Kitchen Utensil 37", title: "Salad Spinner" },
+                    { src: "ku38.jpg", alt: "Kitchen Utensil 38", title: "Strainer" },
+                    { src: "ku39.jpg", alt: "Kitchen Utensil 39", title: "Tea Infuser" },
+                    { src: "ku40.jpg", alt: "Kitchen Utensil 40", title: "Coffee Grinder" },
+                    { src: "ku41.jpg", alt: "Kitchen Utensil 41", title: "Blender" },
+                    { src: "ku42.jpg", alt: "Kitchen Utensil 42", title: "Food Processor" },
+                    { src: "ku43.jpg", alt: "Kitchen Utensil 43", title: "Toaster" },
+                    { src: "ku44.jpg", alt: "Kitchen Utensil 44", title: "Electric Kettle" },
+                    { src: "ku45.jpg", alt: "Kitchen Utensil 45", title: "Rice Cooker" },
+                    { src: "ku46.jpg", alt: "Kitchen Utensil 46", title: "Slow Cooker" },
+                    { src: "ku47.jpg", alt: "Kitchen Utensil 47", title: "Pressure Cooker" },
+                    { src: "ku48.jpg", alt: "Kitchen Utensil 48", title: "Waffle Maker" },
+                    { src: "ku49.jpg", alt: "Kitchen Utensil 49", title: "Sandwich Maker" },
+                    { src: "ku50.jpg", alt: "Kitchen Utensil 50", title: "Griddle" }
                 ],
                 videos: [],
-                description: "Complete kitchen utensil set for all your cooking needs. Durable and easy to clean."
+                description: "High quality kitchen utensils for your daily cooking needs."
             },
-            
+
             appliances: {
                 images: [
-                    { src: baseUrl + "ha1.jpg", alt: "Home Appliance 1", title: "Blender & Food Processor" },
-                    { src: baseUrl + "ha2.jpg", alt: "Home Appliance 2", title: "Electric Kettle" },
-                    { src: baseUrl + "ha3.jpg", alt: "Home Appliance 3", title: "Air Purifier" },
-                    { src: baseUrl + "ha4.jpg", alt: "Home Appliance 4", title: "Toaster Oven" }
+                    { src: "ha1.jpg", alt: "Home Appliance 1", title: "Blender & Food Processor" },
+                    { src: "ha2.jpg", alt: "Home Appliance 2", title: "Electric Kettle" },
+                    { src: "ha3.jpg", alt: "Home Appliance 3", title: "Air Purifier" },
+                    { src: "ha4.jpg", alt: "Home Appliance 4", title: "Toaster Oven" }
                 ],
                 videos: [
-                    { src: baseUrl + "hav1.mp4", alt: "Home Appliance Video 1", title: "Home Appliance Demo 1", thumbnail: baseUrl + "ha1.jpg" },
-                    { src: baseUrl + "hav2.mp4", alt: "Home Appliance Video 2", title: "Home Appliance Demo 2", thumbnail: baseUrl + "ha2.jpg" },
-                    { src: baseUrl + "hav5.mp4", alt: "Home Appliance Video 5", title: "Home Appliance Demo 5", thumbnail: baseUrl + "ha3.jpg" },
-                    { src: baseUrl + "hav6.mp4", alt: "Home Appliance Video 6", title: "Home Appliance Demo 6", thumbnail: baseUrl + "ha4.jpg" },
-                    { src: baseUrl + "hav8.mp4", alt: "Home Appliance Video 8", title: "Home Appliance Demo 8", thumbnail: baseUrl + "ha1.jpg" }
+                    { src: "hav1.mp4", alt: "Home Appliance Video 1", title: "Home Appliance Demo 1", thumbnail: "ha1.jpg" },
+                    { src: "hav2.mp4", alt: "Home Appliance Video 2", title: "Home Appliance Demo 2", thumbnail: "ha2.jpg" },
+                    { src: "hav5.mp4", alt: "Home Appliance Video 5", title: "Home Appliance Demo 5", thumbnail: "ha3.jpg" },
+                    { src: "hav6.mp4", alt: "Home Appliance Video 6", title: "Home Appliance Demo 6", thumbnail: "ha4.jpg" },
+                    { src: "hav8.mp4", alt: "Home Appliance Video 8", title: "Home Appliance Demo 8", thumbnail: "ha1.jpg" }
                 ],
-                description: "Essential home appliances to make your life easier. Energy efficient and durable."
+                description: "Essential home appliances for everyday convenience."
             }
         };
-        
-        // Function to create a product card
-        function createProductCard(item, category, isVideo = false) {
-            const card = document.createElement('div');
-            card.className = `product-card ${category}-card`;
+
+        // Function to load images/videos dynamically with WhatsApp button
+        function loadProducts(categoryId, data) {
+            const grid = document.getElementById(categoryId + "Grid");
             
-            const mediaHTML = isVideo 
-                ? `
-                    <video class="product-video" controls poster="${item.thumbnail || baseUrl + 'a1.jpg'}">
-                        <source src="${item.src}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-icon">
-                        <i class="fas fa-play"></i>
-                    </div>
-                `
-                : `<img src="${item.src}" alt="${item.alt}" class="product-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x220/cccccc/969696?text=Image+Loading';">`;
-            
-            card.innerHTML = `
-                <div class="media-container">
-                    ${mediaHTML}
-                </div>
-                <div class="product-content">
+            // Load images
+            data.images.forEach(item => {
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
+
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
+
+                const img = document.createElement("img");
+                img.src = item.src;
+                img.alt = item.alt;
+                img.className = "product-img";
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/300x220/cccccc/969696?text=Image+Loading';
+                };
+
+                mediaContainer.appendChild(img);
+                card.appendChild(mediaContainer);
+
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
                     <h3>${item.title}</h3>
-                    <p>${imageData[category].description}</p>
+                    <p>${data.description}</p>
                     <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I'm interested in: ${item.title}. I saw it on your website.`)}" class="whatsapp-order-btn" target="_blank">
                         <i class="fab fa-whatsapp"></i> Order This Item
                     </a>
-                </div>
-            `;
-            
-            return card;
+                `;
+                card.appendChild(content);
+
+                grid.appendChild(card);
+            });
+
+            // Load videos
+            data.videos.forEach(video => {
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
+
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
+
+                const vid = document.createElement("video");
+                vid.src = video.src;
+                vid.controls = true;
+                vid.className = "product-video";
+                vid.poster = video.thumbnail || "a1.jpg";
+
+                const videoIcon = document.createElement("div");
+                videoIcon.className = "video-icon";
+                videoIcon.innerHTML = '<i class="fas fa-play"></i>';
+
+                mediaContainer.appendChild(vid);
+                mediaContainer.appendChild(videoIcon);
+                card.appendChild(mediaContainer);
+
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <p>${data.description}</p>
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I'm interested in: ${video.title}. I saw it on your website.`)}" class="whatsapp-order-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order This Item
+                    </a>
+                `;
+                card.appendChild(content);
+
+                grid.appendChild(card);
+            });
         }
-        
-        // Function to load initial products
-        function loadInitialProducts() {
-            const albayasGrid = document.getElementById('albayasGrid');
-            const kitchenGrid = document.getElementById('kitchenGrid');
-            const appliancesGrid = document.getElementById('appliancesGrid');
-            
-            // Load first 6 albayas + 1 video
-            const albayasToShow = Math.min(6, imageData.albayas.images.length);
-            for (let i = 0; i < albayasToShow; i++) {
-                albayasGrid.appendChild(createProductCard(imageData.albayas.images[i], 'albaya'));
-            }
-            if (imageData.albayas.videos.length > 0) {
-                albayasGrid.appendChild(createProductCard(imageData.albayas.videos[0], 'albaya', true));
-            }
-            
-            // Load first 6 kitchen items
-            const kitchenToShow = Math.min(6, imageData.kitchen.images.length);
-            for (let i = 0; i < kitchenToShow; i++) {
-                kitchenGrid.appendChild(createProductCard(imageData.kitchen.images[i], 'kitchen'));
-            }
-            
-            // Load all appliances (4) + 1 video
-            for (let i = 0; i < imageData.appliances.images.length; i++) {
-                appliancesGrid.appendChild(createProductCard(imageData.appliances.images[i], 'appliance'));
-            }
-            if (imageData.appliances.videos.length > 0) {
-                appliancesGrid.appendChild(createProductCard(imageData.appliances.videos[0], 'appliance', true));
-            }
-        }
-        
-        // Load more functionality
-        let albayaIndex = 6; // Start from index 6 since we loaded 6 initially
-        let kitchenIndex = 6; // Start from index 6 since we loaded 6 initially
-        
-        document.getElementById('loadMoreAlbayas').addEventListener('click', function() {
-            const albayasGrid = document.getElementById('albayasGrid');
-            
-            // Load 6 more albayas
-            for (let i = 0; i < 6 && albayaIndex < imageData.albayas.images.length; i++) {
-                albayasGrid.appendChild(createProductCard(imageData.albayas.images[albayaIndex], 'albaya'));
-                albayaIndex++;
-            }
-            
-            // If we've loaded all albayas, hide the button
-            if (albayaIndex >= imageData.albayas.images.length) {
-                this.style.display = 'none';
-                document.querySelector('#albayas .load-more-container p').textContent = 
-                    'All 41 albaya designs loaded! Send us a message on WhatsApp to order.';
-            }
-        });
-        
-        document.getElementById('loadMoreKitchen').addEventListener('click', function() {
-            const kitchenGrid = document.getElementById('kitchenGrid');
-            
-            // Load 6 more kitchen items
-            for (let i = 0; i < 6 && kitchenIndex < imageData.kitchen.images.length; i++) {
-                kitchenGrid.appendChild(createProductCard(imageData.kitchen.images[kitchenIndex], 'kitchen'));
-                kitchenIndex++;
-            }
-            
-            // If we've loaded all kitchen items, hide the button
-            if (kitchenIndex >= imageData.kitchen.images.length) {
-                this.style.display = 'none';
-                document.querySelector('#kitchen .load-more-container p').textContent = 
-                    'All kitchen items loaded! Contact us on WhatsApp to see more.';
-            }
-        });
-        
-        // Initialize the page
+
+        // Load all categories when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            loadInitialProducts();
+            loadProducts("albayas", imageData.albayas);
+            loadProducts("kitchen", imageData.kitchen);
+            loadProducts("appliances", imageData.appliances);
         });
     </script>
 </body>
