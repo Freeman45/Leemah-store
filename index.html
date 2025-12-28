@@ -1,180 +1,1295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leemaah's Store | Albayas, Kitchen Utensils & Home Appliances</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leemaah's Store | Albayas, Kitchen Utensils & Home Appliances</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #d05ce3;
+            --primary-dark: #6a0080;
+            --secondary: #ff9800;
+            --secondary-light: #ffc947;
+            --secondary-dark: #c66900;
+            --accent: #e1bee7;
+            --light: #f8f4ff;
+            --dark: #2e003e;
+            --text: #333333;
+            --success: #4caf50;
+        }
 
-<style>
-/* ===== YOUR ORIGINAL CSS — UNCHANGED ===== */
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins,sans-serif;background:#f8f4ff}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px}
-.product-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.05)}
-.media-container{height:220px;position:relative;cursor:pointer}
-.product-img{width:100%;height:100%;object-fit:cover}
-.video-icon{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.product-content{padding:20px}
-.whatsapp-order-btn{background:#25D366;color:#fff;padding:10px;border-radius:5px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
-.image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:999}
-.modal-content{max-width:90%;max-height:90vh;margin:auto;display:block}
-.modal-video{display:none}
-.modal-title{color:#fff;text-align:center;margin:15px 0}
-.modal-close{position:absolute;top:20px;right:30px;color:#fff;font-size:40px;cursor:pointer}
-.modal-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:30px;cursor:pointer}
-.modal-prev{left:20px}
-.modal-next{right:20px}
-</style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 0, 62, 0.8), rgba(46, 0, 62, 0.8)), url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        /* Section Styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        /* Category Sections */
+        .category-section {
+            padding: 80px 0;
+        }
+
+        .category-section:nth-child(even) {
+            background-color: white;
+        }
+
+        .category-section:nth-child(odd) {
+            background-color: var(--light);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Different border colors for different categories */
+        .albaya-card {
+            border-top: 5px solid var(--primary);
+        }
+
+        .kitchen-card {
+            border-top: 5px solid var(--secondary);
+        }
+
+        .appliance-card {
+            border-top: 5px solid #4caf50;
+        }
+
+        .media-container {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-img, .product-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img,
+        .product-card:hover .product-video {
+            transform: scale(1.05);
+        }
+
+        .video-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .product-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .whatsapp-order-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .whatsapp-order-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* Image Modal - Full Screen View */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            padding: 50px 0;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+            overflow: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-container {
+            position: relative;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            width: 100%;
+        }
+
+        .modal-content {
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+            object-fit: contain;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-video {
+            max-width: 90%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+        }
+
+        .modal-title {
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1.5rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1002;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 1003;
+        }
+
+        .modal-nav:hover {
+            background-color: var(--primary);
+        }
+
+        .modal-prev {
+            left: 30px;
+        }
+
+        .modal-next {
+            right: 30px;
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* Service Info Section */
+        .service-info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .service-info h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .service-info p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--secondary-light);
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            background-color: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .contact-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-details p {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 20px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                display: none;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-close {
+                top: 10px;
+                right: 20px;
+                font-size: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 70px 0;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .category-section, .service-info, .contact-section {
+                padding: 60px 0;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-img {
+                height: 45px;
+            }
+            
+            .image-modal {
+                padding: 20px 0;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/60/9c27b0/ffffff?text=L" alt="Leemaah's Store Logo" class="logo-img">
+                <h1>Leemaah's <span>Store</span></h1>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#albayas">Albayas</a></li>
+                    <li><a href="#kitchen">Kitchen Utensils</a></li>
+                    <li><a href="#appliances">Home Appliances</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<!-- MODAL -->
-<div id="imageModal" class="image-modal">
-<span class="modal-close">&times;</span>
-<div class="modal-nav modal-prev"><i class="fas fa-chevron-left"></i></div>
-<div class="modal-nav modal-next"><i class="fas fa-chevron-right"></i></div>
-<h3 class="modal-title" id="modalTitle"></h3>
-<img id="modalImage" class="modal-content">
-<video id="modalVideo" class="modal-content modal-video" controls></video>
-</div>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-float" target="_blank" title="Order on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<!-- GRIDS -->
-<section>
-<h2>Albayas</h2>
-<div class="product-grid" id="albayasGrid"></div>
-</section>
+    <!-- Image Modal for Full Screen View -->
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-nav modal-prev"><i class="fas fa-chevron-left"></i></div>
+        <div class="modal-nav modal-next"><i class="fas fa-chevron-right"></i></div>
+        <div class="modal-container">
+            <h3 class="modal-title" id="modalImageTitle"></h3>
+            <img class="modal-content" id="modalImage">
+            <video class="modal-content modal-video" id="modalVideo" controls></video>
+        </div>
+    </div>
 
-<section>
-<h2>Kitchen</h2>
-<div class="product-grid" id="kitchenGrid"></div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Welcome to Leemaah's Store</h2>
+            <p>We sell albayas, kitchen utensils, and home appliances that are very nice in quality and affordable in price. Patronize us and enjoy our hospitality 🥰.</p>
+            <p>We are here always 24/7 to receive your orders and make quick and sharp delivery. Thank you 🥰</p>
+            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order on WhatsApp
+            </a>
+        </div>
+    </section>
 
-<section>
-<h2>Appliances</h2>
-<div class="product-grid" id="appliancesGrid"></div>
-</section>
+    <!-- Albayas Section -->
+    <section class="category-section" id="albayas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Beautiful Albayas</h2>
+                <p>Elegant and modest clothing for women - 41 designs available</p>
+            </div>
+            
+            <div class="product-grid" id="albayasGrid">
+                <!-- Albaya Images will be dynamically loaded here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 41 beautiful albaya designs available! Send us a message on WhatsApp to see the full collection.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Albayas on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
-<script>
-/* ===== MODAL STATE ===== */
-let currentIndex = 0
-let currentList = []
+    <!-- Kitchen Utensils Section -->
+    <section class="category-section" id="kitchen">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kitchen Utensils</h2>
+                <p>Quality tools for your culinary needs - 50+ items available</p>
+            </div>
+            
+            <div class="product-grid" id="kitchenGrid">
+                <!-- Kitchen utensils will be dynamically loaded here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 50+ different kitchen utensils! Contact us on WhatsApp to see more.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Kitchen Items on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
-const modal = document.getElementById("imageModal")
-const modalImg = document.getElementById("modalImage")
-const modalVideo = document.getElementById("modalVideo")
-const modalTitle = document.getElementById("modalTitle")
+    <!-- Home Appliances Section -->
+    <section class="category-section" id="appliances">
+        <div class="container">
+            <div class="section-title">
+                <h2>Home Appliances</h2>
+                <p>Essential appliances for your home - 4 items available</p>
+            </div>
+            
+            <div class="product-grid" id="appliancesGrid">
+                <!-- Home appliances will be dynamically loaded here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 4 home appliances and 5 demonstration videos! Message us on WhatsApp for more details.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Appliances on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
-/* ===== OPEN MODAL ===== */
-function openModal(list,index){
-currentList=list
-currentIndex=index
+    <!-- Service Information -->
+    <section class="service-info">
+        <div class="container">
+            <h2>Why Choose Leemaah's Store?</h2>
+            <p>@ Leemaah's Store we sell albayas, kitchen utensils and home appliances that are very nice in quality and affordable in price. Patronize us and enjoy our hospitality 🥰.</p>
+            <p>We are here always 24/7 to receive your orders and make quick and sharp delivery. Thank you 🥰</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-gem"></i>
+                    <h3>Quality Products</h3>
+                    <p>We source only the best quality items for our customers.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-tags"></i>
+                    <h3>Affordable Prices</h3>
+                    <p>Get premium products at prices that won't break the bank.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Quick Delivery</h3>
+                    <p>We ensure fast and reliable delivery to your doorstep.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>We're always available to take your orders and answer questions.</p>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="btn btn-whatsapp" style="margin-top: 40px;" target="_blank">
+                <i class="fab fa-whatsapp"></i> Start Shopping on WhatsApp
+            </a>
+        </div>
+    </section>
 
-modalImg.style.display="none"
-modalVideo.style.display="none"
-modalVideo.pause()
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch for orders and inquiries</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp Orders</h3>
+                            <p>Click the button below to order directly via WhatsApp</p>
+                            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="margin-top: 10px;">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Address</h3>
+                            <p>halimatiamuju@gmail.com</p>
+                            <p>Send us an email for bulk orders or inquiries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Business Hours</h3>
+                            <p>24 Hours, 7 Days a Week</p>
+                            <p>We're always available to take your orders!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Delivery</h3>
+                            <p>Nationwide Delivery Available</p>
+                            <p>Quick and reliable delivery to your location</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <p>Have questions? Send us a message and we'll get back to you soon.</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="What is this regarding?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-const item=list[index]
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://via.placeholder.com/50/9c27b0/ffffff?text=L" alt="Leemaah's Store Logo" class="footer-logo-img">
+                    <h3 style="color: white;">Leemaah's Store</h3>
+                </div>
+                <p>Your trusted source for albayas, kitchen utensils, and home appliances</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#albayas">Albayas</a>
+                    <a href="#kitchen">Kitchen Utensils</a>
+                    <a href="#appliances">Home Appliances</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:halimatiamuju@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Leemaah's Store. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for quality shopping experience</p>
+            </div>
+        </div>
+    </footer>
 
-if(item.isVideo){
-modalVideo.src=item.src
-modalVideo.style.display="block"
-}else{
-modalImg.src=item.src
-modalImg.style.display="block"
-}
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:halimatiamuju@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`)}`;
+            window.location.href = mailtoLink;
+            
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Image Modal Variables
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalVideo = document.getElementById("modalVideo");
+        const modalTitle = document.getElementById("modalImageTitle");
+        const closeBtn = document.querySelector(".modal-close");
+        const prevBtn = document.querySelector(".modal-prev");
+        const nextBtn = document.querySelector(".modal-next");
+        
+        // Store all media items for navigation
+        let allMediaItems = [];
+        let currentMediaIndex = 0;
+        
+        // Image data
+        const imageData = {
+            albayas: {
+                images: Array.from({length: 41}, (_, i) => ({
+                    src: `https://via.placeholder.com/600x800/e1bee7/9c27b0?text=Albaya+${i+1}`,
+                    alt: `Albaya Design ${i+1}`,
+                    title: `Elegant Albaya Design ${i+1}`
+                })),
+                videos: [
+                    { src: "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: "https://via.placeholder.com/600x800/e1bee7/9c27b0?text=Albaya+Collection+Video", isVideo: true }
+                ],
+                description: "Beautifully designed albaya with intricate embroidery. Perfect for special occasions."
+            },
+            kitchen: {
+                images: Array.from({length: 20}, (_, i) => ({
+                    src: `https://via.placeholder.com/600x450/ffecb3/ff9800?text=Kitchen+Tool+${i+1}`,
+                    alt: `Kitchen Utensil ${i+1}`,
+                    title: `Premium Kitchen Utensil ${i+1}`
+                })),
+                videos: [],
+                description: "High quality kitchen utensils for your daily cooking needs."
+            },
+            appliances: {
+                images: Array.from({length: 4}, (_, i) => ({
+                    src: `https://via.placeholder.com/600x450/c8e6c9/4caf50?text=Appliance+${i+1}`,
+                    alt: `Home Appliance ${i+1}`,
+                    title: `Home Appliance ${i+1}`
+                })),
+                videos: [
+                    { src: "hav1.mp4", alt: "Appliance Video 1", title: "Appliance Demo 1", thumbnail: "https://via.placeholder.com/600x450/c8e6c9/4caf50?text=Appliance+Demo+1", isVideo: true },
+                    { src: "hav2.mp4", alt: "Appliance Video 2", title: "Appliance Demo 2", thumbnail: "https://via.placeholder.com/600x450/c8e6c9/4caf50?text=Appliance+Demo+2", isVideo: true }
+                ],
+                description: "Essential home appliances for everyday convenience."
+            }
+        };
 
-modalTitle.textContent=item.title
-modal.style.display="block"
-document.body.style.overflow="hidden"
-}
+        function openModal(index) {
+            currentMediaIndex = index;
+            const mediaItem = allMediaItems[currentMediaIndex];
+            
+            modalImg.style.display = "none";
+            modalVideo.style.display = "none";
+            
+            if (mediaItem.isVideo) {
+                modalVideo.src = mediaItem.src;
+                modalVideo.style.display = "block";
+                modalTitle.textContent = mediaItem.title;
+            } else {
+                modalImg.src = mediaItem.src;
+                modalImg.alt = mediaItem.alt;
+                modalImg.style.display = "block";
+                modalTitle.textContent = mediaItem.title;
+            }
+            
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
 
-/* ===== NAV ===== */
-function nextMedia(){openModal(currentList,(currentIndex+1)%currentList.length)}
-function prevMedia(){openModal(currentList,(currentIndex-1+currentList.length)%currentList.length)}
+        function nextMedia() {
+            currentMediaIndex = (currentMediaIndex + 1) % allMediaItems.length;
+            openModal(currentMediaIndex);
+        }
 
-/* ===== CLOSE ===== */
-document.querySelector(".modal-close").onclick=()=>{
-modal.style.display="none"
-modalVideo.pause()
-document.body.style.overflow="auto"
-}
+        function prevMedia() {
+            currentMediaIndex = (currentMediaIndex - 1 + allMediaItems.length) % allMediaItems.length;
+            openModal(currentMediaIndex);
+        }
 
-document.querySelector(".modal-next").onclick=nextMedia
-document.querySelector(".modal-prev").onclick=prevMedia
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+            modalVideo.pause();
+        }
 
-/* ===== DATA ===== */
-const imageData={
-albayas:{
-images:[{src:"a1.jpg",title:"Albaya 1"},{src:"a2.jpg",title:"Albaya 2"}],
-videos:[{src:"av1.mp4",title:"Albaya Video",thumbnail:"a1.jpg"}],
-desc:"Elegant albaya"
-},
-kitchen:{
-images:[{src:"ku1.jpg",title:"Kitchen Item 1"}],
-videos:[],
-desc:"Kitchen tools"
-},
-appliances:{
-images:[{src:"ha1.jpg",title:"Appliance 1"}],
-videos:[{src:"hav1.mp4",title:"Appliance Video",thumbnail:"ha1.jpg"}],
-desc:"Home appliances"
-}
-}
+        modal.onclick = function(event) {
+            if (event.target === modal || event.target === document.querySelector('.modal-container')) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+                modalVideo.pause();
+            }
+        }
 
-/* ===== LOAD PRODUCTS (FIXED) ===== */
-function loadProducts(id,data){
-const grid=document.getElementById(id+"Grid")
-const media=[]
+        document.addEventListener('keydown', function(event) {
+            if (modal.style.display === "block") {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                    modalVideo.pause();
+                } else if (event.key === "ArrowRight") {
+                    nextMedia();
+                } else if (event.key === "ArrowLeft") {
+                    prevMedia();
+                }
+            }
+        });
 
-data.images.forEach(i=>media.push({...i,isVideo:false}))
-data.videos.forEach(v=>media.push({...v,isVideo:true}))
+        nextBtn.onclick = (e) => { e.stopPropagation(); nextMedia(); };
+        prevBtn.onclick = (e) => { e.stopPropagation(); prevMedia(); };
 
-media.forEach((item,i)=>{
-const card=document.createElement("div")
-card.className="product-card"
+        function loadProducts(categoryId, data) {
+            const grid = document.getElementById(categoryId + "Grid");
+            
+            // Collect all items into the navigation array
+            const categoryStartIndex = allMediaItems.length;
+            
+            data.images.forEach((item, index) => {
+                const cardIndex = allMediaItems.length;
+                allMediaItems.push({...item, isVideo: false});
 
-const mediaBox=document.createElement("div")
-mediaBox.className="media-container"
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
 
-if(item.isVideo){
-const img=document.createElement("img")
-img.src=item.thumbnail
-img.className="product-img"
-const icon=document.createElement("div")
-icon.className="video-icon"
-icon.innerHTML='<i class="fas fa-play"></i>'
-mediaBox.append(img,icon)
-}else{
-const img=document.createElement("img")
-img.src=item.src
-img.className="product-img"
-mediaBox.appendChild(img)
-}
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
 
-mediaBox.onclick=()=>openModal(media,i)
+                const img = document.createElement("img");
+                img.src = item.src;
+                img.alt = item.alt;
+                img.className = "product-img";
+                img.onerror = function() {
+                    this.src = 'https://via.placeholder.com/300x220/cccccc/969696?text=Image+Not+Found';
+                };
 
-const content=document.createElement("div")
-content.className="product-content"
-content.innerHTML=`<h3>${item.title}</h3>
-<a class="whatsapp-order-btn" target="_blank"
-href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(item.title)}">
-<i class="fab fa-whatsapp"></i> Order
-</a>`
+                mediaContainer.appendChild(img);
+                mediaContainer.onclick = () => openModal(cardIndex);
+                card.appendChild(mediaContainer);
 
-card.append(mediaBox,content)
-grid.appendChild(card)
-})
-}
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${data.description}</p>
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I'm interested in: ${item.title}`)}" class="whatsapp-order-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order This Item
+                    </a>
+                `;
+                card.appendChild(content);
+                grid.appendChild(card);
+            });
 
-/* ===== INIT ===== */
-loadProducts("albayas",imageData.albayas)
-loadProducts("kitchen",imageData.kitchen)
-loadProducts("appliances",imageData.appliances)
-</script>
+            data.videos.forEach((video) => {
+                const cardIndex = allMediaItems.length;
+                allMediaItems.push({...video, isVideo: true});
 
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
+
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
+
+                const img = document.createElement("img");
+                img.src = video.thumbnail;
+                img.className = "product-img";
+
+                const videoIcon = document.createElement("div");
+                videoIcon.className = "video-icon";
+                videoIcon.innerHTML = '<i class="fas fa-play"></i>';
+
+                mediaContainer.appendChild(img);
+                mediaContainer.appendChild(videoIcon);
+                mediaContainer.onclick = () => openModal(cardIndex);
+                card.appendChild(mediaContainer);
+
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <p>${data.description}</p>
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I want to order based on: ${video.title}`)}" class="whatsapp-order-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order This Item
+                    </a>
+                `;
+                card.appendChild(content);
+                grid.appendChild(card);
+            });
+        }
+
+        window.onload = function() {
+            loadProducts("albayas", imageData.albayas);
+            loadProducts("kitchen", imageData.kitchen);
+            loadProducts("appliances", imageData.appliances);
+        };
+    </script>
 </body>
 </html>
+
+
