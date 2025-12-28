@@ -267,7 +267,7 @@
         }
 
         /* Different border colors for different categories */
-        .albayas-card {
+        .albaya-card {
             border-top: 5px solid var(--primary);
         }
 
@@ -275,7 +275,7 @@
             border-top: 5px solid var(--secondary);
         }
 
-        .appliances-card {
+        .appliance-card {
             border-top: 5px solid #4caf50;
         }
 
@@ -354,35 +354,6 @@
 
         .whatsapp-order-btn:hover {
             background-color: #128C7E;
-        }
-
-        /* Admin Styles */
-        .auth-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-        .auth-box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-        }
-        .admin-panel {
-            display: none;
-            background: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px dashed var(--primary);
-            border-radius: 10px;
         }
 
         /* Image Preview Modal */
@@ -569,8 +540,7 @@
         }
 
         .form-group input, 
-        .form-group textarea,
-        .form-group select {
+        .form-group textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
@@ -735,16 +705,6 @@
 </head>
 <body>
     
-    <div id="authOverlay" class="auth-overlay">
-        <div class="auth-box">
-            <h3>Owner Login</h3>
-            <div class="form-group"><input type="text" id="adminUser" placeholder="Username"></div>
-            <div class="form-group"><input type="password" id="adminPass" placeholder="Password"></div>
-            <button class="btn" onclick="tryLogin()" style="width:100%">Login</button>
-            <button class="btn" onclick="toggleAuth(false)" style="width:100%; margin-top:10px; background:#666">Cancel</button>
-        </div>
-    </div>
-
     <div id="imgModal" class="image-modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="fullImage">
@@ -768,37 +728,10 @@
                     <li><a href="#kitchen">Kitchen Utensils</a></li>
                     <li><a href="#appliances">Home Appliances</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="javascript:void(0)" onclick="toggleAuth(true)" id="adminBtn">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <div class="container">
-        <div id="adminPanel" class="admin-panel">
-            <h3>Add New Product</h3>
-            <div class="contact-container" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top:15px;">
-                <div class="form-group">
-                    <label>Category</label>
-                    <select id="newProdCat">
-                        <option value="albayas">Albayas</option>
-                        <option value="kitchen">Kitchen Utensils</option>
-                        <option value="appliances">Home Appliances</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" id="newProdName">
-                </div>
-                <div class="form-group">
-                    <label>Image Filename (e.g. a42.jpg)</label>
-                    <input type="text" id="newProdImg">
-                </div>
-            </div>
-            <button class="btn" onclick="addNewProduct()" style="background:var(--success)">Add Product</button>
-            <button class="btn" onclick="logout()" style="background:#666">Logout</button>
-        </div>
-    </div>
 
     <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-float" target="_blank" title="Order on WhatsApp">
         <i class="fab fa-whatsapp"></i>
@@ -819,9 +752,18 @@
         <div class="container">
             <div class="section-title">
                 <h2>Beautiful Albayas</h2>
-                <p>Elegant and modest clothing for women</p>
+                <p>Elegant and modest clothing for women - 41 designs available</p>
             </div>
-            <div class="product-grid" id="albayasGrid"></div>
+            
+            <div class="product-grid" id="albayasGrid">
+                </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 41 beautiful albaya designs available! Send us a message on WhatsApp to see the full collection.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Albayas on WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
@@ -829,9 +771,18 @@
         <div class="container">
             <div class="section-title">
                 <h2>Kitchen Utensils</h2>
-                <p>Quality tools for your culinary needs</p>
+                <p>Quality tools for your culinary needs - 50+ items available</p>
             </div>
-            <div class="product-grid" id="kitchenGrid"></div>
+            
+            <div class="product-grid" id="kitchenGrid">
+                </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 50+ different kitchen utensils! Contact us on WhatsApp to see more.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Kitchen Items on WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
@@ -839,9 +790,18 @@
         <div class="container">
             <div class="section-title">
                 <h2>Home Appliances</h2>
-                <p>Essential appliances for your home</p>
+                <p>Essential appliances for your home - 4 items available</p>
             </div>
-            <div class="product-grid" id="appliancesGrid"></div>
+            
+            <div class="product-grid" id="appliancesGrid">
+                </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p>We have 4 home appliances and 5 demonstration videos! Message us on WhatsApp for more details.</p>
+                <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="display: inline-flex; margin-top: 15px;">
+                    <i class="fab fa-whatsapp"></i> View All Appliances on WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
@@ -849,29 +809,121 @@
         <div class="container">
             <h2>Why Choose Leemaah's Store?</h2>
             <p>@ Leemaah's Store we sell albayas, kitchen utensils and home appliances that are very nice in quality and affordable in price. Patronize us and enjoy our hospitality 🥰.</p>
+            <p>We are here always 24/7 to receive your orders and make quick and sharp delivery. Thank you 🥰</p>
+            
             <div class="features">
-                <div class="feature"><i class="fas fa-gem"></i><h3>Quality Products</h3><p>We source only the best quality items.</p></div>
-                <div class="feature"><i class="fas fa-tags"></i><h3>Affordable Prices</h3><p>Get premium products at great prices.</p></div>
-                <div class="feature"><i class="fas fa-shipping-fast"></i><h3>Quick Delivery</h3><p>Fast and reliable delivery.</p></div>
-                <div class="feature"><i class="fas fa-headset"></i><h3>24/7 Support</h3><p>Always available for orders.</p></div>
+                <div class="feature">
+                    <i class="fas fa-gem"></i>
+                    <h3>Quality Products</h3>
+                    <p>We source only the best quality items for our customers.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-tags"></i>
+                    <h3>Affordable Prices</h3>
+                    <p>Get premium products at prices that won't break the bank.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Quick Delivery</h3>
+                    <p>We ensure fast and reliable delivery to your doorstep.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>We're always available to take your orders and answer questions.</p>
+                </div>
             </div>
+            
+            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="btn btn-whatsapp" style="margin-top: 40px;" target="_blank">
+                <i class="fab fa-whatsapp"></i> Start Shopping on WhatsApp
+            </a>
         </div>
     </section>
 
     <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-title"><h2>Contact Us</h2></div>
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch for orders and inquiries</p>
+            </div>
+            
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-                        <div class="contact-details"><h3>WhatsApp</h3><a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank">Order Now</a></div>
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp Orders</h3>
+                            <p>Click the button below to order directly via WhatsApp</p>
+                            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank" style="margin-top: 10px;">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Address</h3>
+                            <p>halimatiamuju@gmail.com</p>
+                            <p>Send us an email for bulk orders or inquiries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Business Hours</h3>
+                            <p>24 Hours, 7 Days a Week</p>
+                            <p>We're always available to take your orders!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Delivery</h3>
+                            <p>Nationwide Delivery Available</p>
+                            <p>Quick and reliable delivery to your location</p>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <p>Have questions? Send us a message and we'll get back to you soon.</p>
+                    
                     <form id="contactForm">
-                        <div class="form-group"><input type="text" id="cname" placeholder="Name" required></div>
-                        <div class="form-group"><textarea id="cmessage" rows="4" placeholder="Message" required></textarea></div>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="What is this regarding?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message here..." required></textarea>
+                        </div>
+                        
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
@@ -881,104 +933,312 @@
 
     <footer>
         <div class="container">
-            <div class="copyright"><p>&copy; 2023 Leemaah's Store. All rights reserved.</p></div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.jpg" alt="Leemaah's Store Logo" class="footer-logo-img">
+                    <h3 style="color: white;">Leemaah's Store</h3>
+                </div>
+                <p>Your trusted source for albayas, kitchen utensils, and home appliances</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#albayas">Albayas</a>
+                    <a href="#kitchen">Kitchen Utensils</a>
+                    <a href="#appliances">Home Appliances</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:halimatiamuju@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Leemaah's Store. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for quality shopping experience</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Use "admin" and "1234" to login
-        let isAdmin = false;
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
         
-        // Load data from localStorage or use defaults
-        let storeData = JSON.parse(localStorage.getItem('leemaahStore')) || {
-            albayas: [
-                { src: "a1.jpg", title: "Elegant Embroidered Albaya 1" },
-                { src: "a2.jpg", title: "Beautiful Albaya Design 2" }
-            ],
-            kitchen: [
-                { src: "ku1.jpg", title: "Non-Stick Cookware Set" }
-            ],
-            appliances: [
-                { src: "ha1.jpg", title: "Blender & Food Processor" }
-            ]
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+            
+            const mailtoLink = `mailto:halimatiamuju@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`)}`;
+            window.location.href = mailtoLink;
+            
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // IMAGE PREVIEW LOGIC
+        const modal = document.getElementById("imgModal");
+        const modalImg = document.getElementById("fullImage");
+        const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        function openPreview(src) {
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        closeBtn.onclick = () => modal.style.display = "none";
+        modal.onclick = (e) => { if(e.target !== modalImg) modal.style.display = "none"; }
+        
+        // Image data - Load images/videos from local folder (simpler method)
+        const imageData = {
+            albayas: {
+                images: [
+                    { src: "a1.jpg", alt: "Albaya Design 1", title: "Elegant Embroidered Albaya 1" },
+                    { src: "a2.jpg", alt: "Albaya Design 2", title: "Beautiful Albaya Design 2" },
+                    { src: "a3.jpg", alt: "Albaya Design 3", title: "Luxury Silk Albaya 3" },
+                    { src: "a4.jpg", alt: "Albaya Design 4", title: "Casual Everyday Albaya 4" },
+                    { src: "a5.jpg", alt: "Albaya Design 5", title: "Elegant Albaya Design 5" },
+                    { src: "a6.jpg", alt: "Albaya Design 6", title: "Stylish Albaya 6" },
+                    { src: "a7.jpg", alt: "Albaya Design 7", title: "Modern Albaya Design 7" },
+                    { src: "a8.jpg", alt: "Albaya Design 8", title: "Traditional Albaya 8" },
+                    { src: "a9.jpg", alt: "Albaya Design 9", title: "Fashionable Albaya 9" },
+                    { src: "a10.jpg", alt: "Albaya Design 10", title: "Elegant Albaya 10" },
+                    { src: "a11.jpg", alt: "Albaya Design 11", title: "Beautiful Albaya 11" },
+                    { src: "a12.jpg", alt: "Albaya Design 12", title: "Luxury Albaya 12" },
+                    { src: "a13.jpg", alt: "Albaya Design 13", title: "Casual Albaya 13" },
+                    { src: "a14.jpg", alt: "Albaya Design 14", title: "Elegant Albaya 14" },
+                    { src: "a15.jpg", alt: "Albaya Design 15", title: "Stylish Albaya 15" },
+                    { src: "a16.jpg", alt: "Albaya Design 16", title: "Modern Albaya 16" },
+                    { src: "a17.jpg", alt: "Albaya Design 17", title: "Traditional Albaya 17" },
+                    { src: "a18.jpg", alt: "Albaya Design 18", title: "Fashionable Albaya 18" },
+                    { src: "a19.jpg", alt: "Albaya Design 19", title: "Elegant Albaya 19" },
+                    { src: "a20.jpg", alt: "Albaya Design 20", title: "Beautiful Albaya 20" },
+                    { src: "a21.jpg", alt: "Albaya Design 21", title: "Luxury Albaya 21" },
+                    { src: "a22.jpg", alt: "Albaya Design 22", title: "Casual Albaya 22" },
+                    { src: "a23.jpg", alt: "Albaya Design 23", title: "Elegant Albaya 23" },
+                    { src: "a24.jpg", alt: "Albaya Design 24", title: "Stylish Albaya 24" },
+                    { src: "a25.jpg", alt: "Albaya Design 25", title: "Modern Albaya 25" },
+                    { src: "a26.jpg", alt: "Albaya Design 26", title: "Traditional Albaya 26" },
+                    { src: "a27.jpg", alt: "Albaya Design 27", title: "Fashionable Albaya 27" },
+                    { src: "a28.jpg", alt: "Albaya Design 28", title: "Elegant Albaya 28" },
+                    { src: "a29.jpg", alt: "Albaya Design 29", title: "Beautiful Albaya 29" },
+                    { src: "a30.jpg", alt: "Albaya Design 30", title: "Luxury Albaya 30" },
+                    { src: "a31.jpg", alt: "Albaya Design 31", title: "Casual Albaya 31" },
+                    { src: "a32.jpg", alt: "Albaya Design 32", title: "Elegant Albaya 32" },
+                    { src: "a33.jpg", alt: "Albaya Design 33", title: "Stylish Albaya 33" },
+                    { src: "a34.jpg", alt: "Albaya Design 34", title: "Modern Albaya 34" },
+                    { src: "a35.jpg", alt: "Albaya Design 35", title: "Traditional Albaya 35" },
+                    { src: "a36.jpg", alt: "Albaya Design 36", title: "Fashionable Albaya 36" },
+                    { src: "a37.jpg", alt: "Albaya Design 37", title: "Elegant Albaya 37" },
+                    { src: "a38.jpg", alt: "Albaya Design 38", title: "Beautiful Albaya 38" },
+                    { src: "a39.jpg", alt: "Albaya Design 39", title: "Luxury Albaya 39" },
+                    { src: "a40.jpg", alt: "Albaya Design 40", title: "Casual Albaya 40" },
+                    { src: "a41.jpg", alt: "Albaya Design 41", title: "Elegant Albaya 41" }
+                ],
+                videos: [
+                    { src: "av1.mp4", alt: "Albaya Collection Video", title: "Albaya Collection Video", thumbnail: "a1.jpg" }
+                ],
+                description: "Beautifully designed albaya with intricate embroidery. Perfect for special occasions."
+            },
+
+            kitchen: {
+                images: [
+                    { src: "ku1.jpg", alt: "Kitchen Utensil 1", title: "Non-Stick Cookware Set" },
+                    { src: "ku2.jpg", alt: "Kitchen Utensil 2", title: "Stainless Steel Utensil Set" },
+                    { src: "ku3.jpg", alt: "Kitchen Utensil 3", title: "Ceramic Dinnerware Set" },
+                    { src: "ku4.jpg", alt: "Kitchen Utensil 4", title: "Cutlery Set" },
+                    { src: "ku5.jpg", alt: "Kitchen Utensil 5", title: "Mixing Bowls" },
+                    { src: "ku10.jpg", alt: "Kitchen Utensil 10", title: "Baking Tools" },
+                    { src: "ku11.jpg", alt: "Kitchen Utensil 11", title: "Kitchen Knives Set" },
+                    { src: "ku12.jpg", alt: "Kitchen Utensil 12", title: "Measuring Cups" },
+                    { src: "ku13.jpg", alt: "Kitchen Utensil 13", title: "Food Storage Containers" },
+                    { src: "ku14.jpg", alt: "Kitchen Utensil 14", title: "Spatula Set" },
+                    { src: "ku15.jpg", alt: "Kitchen Utensil 15", title: "Kitchen Timer" },
+                    { src: "ku16.jpg", alt: "Kitchen Utensil 16", title: "Colander" },
+                    { src: "ku17.jpg", alt: "Kitchen Utensil 17", title: "Grater" },
+                    { src: "ku18.jpg", alt: "Kitchen Utensil 18", title: "Peeler" },
+                    { src: "ku19.jpg", alt: "Kitchen Utensil 19", title: "Can Opener" },
+                    { src: "ku20.jpg", alt: "Kitchen Utensil 20", title: "Bottle Opener" },
+                    { src: "ku21.jpg", alt: "Kitchen Utensil 21", title: "Kitchen Scissors" },
+                    { src: "ku22.jpg", alt: "Kitchen Utensil 22", title: "Tongs" },
+                    { src: "ku23.jpg", alt: "Kitchen Utensil 23", title: "Whisk" },
+                    { src: "ku24.jpg", alt: "Kitchen Utensil 24", title: "Ladle" },
+                    { src: "ku25.jpg", alt: "Kitchen Utensil 25", title: "Slotted Spoon" },
+                    { src: "ku26.jpg", alt: "Kitchen Utensil 26", title: "Solid Spoon" },
+                    { src: "ku27.jpg", alt: "Kitchen Utensil 27", title: "Serving Spoons" },
+                    { src: "ku28.jpg", alt: "Kitchen Utensil 28", title: "Kitchen Scale" },
+                    { src: "ku29.jpg", alt: "Kitchen Utensil 29", title: "Mixing Spoons" },
+                    { src: "ku30.jpg", alt: "Kitchen Utensil 30", title: "Kitchen Brush" },
+                    { src: "ku31.jpg", alt: "Kitchen Utensil 31", title: "Potato Masher" },
+                    { src: "ku32.jpg", alt: "Kitchen Utensil 32", title: "Garlic Press" },
+                    { src: "ku33.jpg", alt: "Kitchen Utensil 33", title: "Ice Cream Scoop" },
+                    { src: "ku34.jpg", alt: "Kitchen Utensil 34", title: "Pizza Cutter" },
+                    { src: "ku35.jpg", alt: "Kitchen Utensil 35", title: "Egg Slicer" },
+                    { src: "ku36.jpg", alt: "Kitchen Utensil 36", title: "Vegetable Chopper" },
+                    { src: "ku37.jpg", alt: "Kitchen Utensil 37", title: "Salad Spinner" },
+                    { src: "ku38.jpg", alt: "Kitchen Utensil 38", title: "Strainer" },
+                    { src: "ku39.jpg", alt: "Kitchen Utensil 39", title: "Tea Infuser" },
+                    { src: "ku40.jpg", alt: "Kitchen Utensil 40", title: "Coffee Grinder" },
+                    { src: "ku41.jpg", alt: "Kitchen Utensil 41", title: "Blender" },
+                    { src: "ku42.jpg", alt: "Kitchen Utensil 42", title: "Food Processor" },
+                    { src: "ku43.jpg", alt: "Kitchen Utensil 43", title: "Toaster" },
+                    { src: "ku44.jpg", alt: "Kitchen Utensil 44", title: "Electric Kettle" },
+                    { src: "ku45.jpg", alt: "Kitchen Utensil 45", title: "Rice Cooker" },
+                    { src: "ku46.jpg", alt: "Kitchen Utensil 46", title: "Slow Cooker" },
+                    { src: "ku47.jpg", alt: "Kitchen Utensil 47", title: "Pressure Cooker" },
+                    { src: "ku48.jpg", alt: "Kitchen Utensil 48", title: "Waffle Maker" },
+                    { src: "ku49.jpg", alt: "Kitchen Utensil 49", title: "Sandwich Maker" },
+                    { src: "ku50.jpg", alt: "Kitchen Utensil 50", title: "Griddle" }
+                ],
+                videos: [],
+                description: "High quality kitchen utensils for your daily cooking needs."
+            },
+
+            appliances: {
+                images: [
+                    { src: "ha1.jpg", alt: "Home Appliance 1", title: "Blender & Food Processor" },
+                    { src: "ha2.jpg", alt: "Home Appliance 2", title: "Electric Kettle" },
+                    { src: "ha3.jpg", alt: "Home Appliance 3", title: "Air Purifier" },
+                    { src: "ha4.jpg", alt: "Home Appliance 4", title: "Toaster Oven" }
+                ],
+                videos: [
+                    { src: "hav1.mp4", alt: "Home Appliance Video 1", title: "Home Appliance Demo 1", thumbnail: "ha1.jpg" },
+                    { src: "hav2.mp4", alt: "Home Appliance Video 2", title: "Home Appliance Demo 2", thumbnail: "ha2.jpg" },
+                    { src: "hav5.mp4", alt: "Home Appliance Video 5", title: "Home Appliance Demo 5", thumbnail: "ha3.jpg" },
+                    { src: "hav6.mp4", alt: "Home Appliance Video 6", title: "Home Appliance Demo 6", thumbnail: "ha4.jpg" },
+                    { src: "hav8.mp4", alt: "Home Appliance Video 8", title: "Home Appliance Demo 8", thumbnail: "ha1.jpg" }
+                ],
+                description: "Essential home appliances for everyday convenience."
+            }
         };
 
-        function renderProducts() {
-            ['albayas', 'kitchen', 'appliances'].forEach(cat => {
-                const grid = document.getElementById(cat + 'Grid');
-                grid.innerHTML = '';
-                storeData[cat].forEach((item, index) => {
-                    const card = document.createElement('div');
-                    card.className = `${cat}-card product-card`;
-                    card.innerHTML = `
-                        <div class="media-container"><img src="${item.src}" class="product-img" onclick="openPreview('${item.src}')"></div>
-                        <div class="product-content">
-                            <h3>${item.title}</h3>
-                            ${isAdmin ? `<button class="btn" style="padding:5px 15px; font-size:0.8rem; margin-bottom:10px;" onclick="editName('${cat}', ${index})">Edit Name</button>` : ''}
-                            <a href="https://wa.me/message/BFCJZDIJ5MTEE1" class="whatsapp-order-btn" target="_blank">Order</a>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
+        // Function to load images/videos dynamically with WhatsApp button
+        function loadProducts(categoryId, data) {
+            const grid = document.getElementById(categoryId + "Grid");
+            
+            // Load images
+            data.images.forEach(item => {
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
+
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
+
+                const img = document.createElement("img");
+                img.src = item.src;
+                img.alt = item.alt;
+                img.className = "product-img";
+                
+                // Add click event for full screen preview
+                img.onclick = () => openPreview(item.src);
+
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/300x220/cccccc/969696?text=Image+Loading';
+                };
+
+                mediaContainer.appendChild(img);
+                card.appendChild(mediaContainer);
+
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${data.description}</p>
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I'm interested in: ${item.title}. I saw it on your website.`)}" class="whatsapp-order-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order This Item
+                    </a>
+                `;
+                card.appendChild(content);
+
+                grid.appendChild(card);
+            });
+
+            // Load videos
+            data.videos.forEach(video => {
+                const card = document.createElement("div");
+                card.className = `${categoryId}-card product-card`;
+
+                const mediaContainer = document.createElement("div");
+                mediaContainer.className = "media-container";
+
+                const vid = document.createElement("video");
+                vid.src = video.src;
+                vid.controls = true;
+                vid.className = "product-video";
+                vid.poster = video.thumbnail || "a1.jpg";
+
+                const videoIcon = document.createElement("div");
+                videoIcon.className = "video-icon";
+                videoIcon.innerHTML = '<i class="fas fa-play"></i>';
+
+                mediaContainer.appendChild(vid);
+                mediaContainer.appendChild(videoIcon);
+                card.appendChild(mediaContainer);
+
+                const content = document.createElement("div");
+                content.className = "product-content";
+                content.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <p>${data.description}</p>
+                    <a href="https://wa.me/message/BFCJZDIJ5MTEE1?text=${encodeURIComponent(`Hello! I'm interested in: ${video.title}. I saw it on your website.`)}" class="whatsapp-order-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order This Item
+                    </a>
+                `;
+                card.appendChild(content);
+
+                grid.appendChild(card);
             });
         }
 
-        function toggleAuth(show) { document.getElementById('authOverlay').style.display = show ? 'flex' : 'none'; }
-        
-        function tryLogin() {
-            if(document.getElementById('adminUser').value === 'admin' && document.getElementById('adminPass').value === '1234') {
-                isAdmin = true;
-                toggleAuth(false);
-                document.getElementById('adminPanel').style.display = 'block';
-                document.getElementById('adminBtn').innerText = 'Logged In';
-                renderProducts();
-            } else { alert('Wrong password!'); }
-        }
-
-        function logout() {
-            isAdmin = false;
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('adminBtn').innerText = 'Login';
-            renderProducts();
-        }
-
-        function editName(cat, index) {
-            const newName = prompt("Enter new name:", storeData[cat][index].title);
-            if(newName) {
-                storeData[cat][index].title = newName;
-                saveAndRefresh();
-            }
-        }
-
-        function addNewProduct() {
-            const cat = document.getElementById('newProdCat').value;
-            const name = document.getElementById('newProdName').value;
-            const img = document.getElementById('newProdImg').value;
-            if(name && img) {
-                storeData[cat].push({ src: img, title: name });
-                saveAndRefresh();
-                document.getElementById('newProdName').value = '';
-                document.getElementById('newProdImg').value = '';
-            }
-        }
-
-        function saveAndRefresh() {
-            localStorage.setItem('leemaahStore', JSON.stringify(storeData));
-            renderProducts();
-        }
-
-        function openPreview(src) {
-            const modal = document.getElementById("imgModal");
-            document.getElementById("fullImage").src = src;
-            modal.style.display = "block";
-        }
-
-        document.querySelector(".close-modal").onclick = () => document.getElementById("imgModal").style.display = "none";
-        document.getElementById('mobileToggle').onclick = () => document.getElementById('mainNav').classList.toggle('active');
-
-        // Initial Load
-        renderProducts();
+        // Load all categories when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts("albayas", imageData.albayas);
+            loadProducts("kitchen", imageData.kitchen);
+            loadProducts("appliances", imageData.appliances);
+        });
     </script>
 </body>
 </html>
-
